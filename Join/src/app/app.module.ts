@@ -11,6 +11,17 @@ import { LegalNoticeComponent } from './startscreen/legal-notice/legal-notice.co
 import { PrivacyPolicyComponent } from './startscreen/privacy-policy/privacy-policy.component';
 import { StartscreenComponent } from './startscreen/startscreen.component';
 import { MainscreenComponent } from './mainscreen/mainscreen.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {ReactiveFormsModule} from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+import {FormsModule} from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -21,12 +32,23 @@ import { MainscreenComponent } from './mainscreen/mainscreen.component';
     LegalNoticeComponent,
     PrivacyPolicyComponent,
     StartscreenComponent,
-    MainscreenComponent
+    MainscreenComponent,
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatInputModule,
+    MatCheckboxModule,
+    FormsModule,
+    MatRadioModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

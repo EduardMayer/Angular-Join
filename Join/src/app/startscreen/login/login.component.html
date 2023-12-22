@@ -1,1 +1,33 @@
-<p>login works!</p>
+<mat-card class="login-container">
+       <div class="login-title">
+        <h1>Log in</h1>
+        <div class="title-underline"></div>
+        </div>
+       <div class="input-container">
+            <div class="login-email-container">
+    
+                <mat-form-field appearance="outline" class="formfield-email-container">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="pat@example.com" [formControl]="email" required >
+                    <mat-icon>mail_outline</mat-icon>
+                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="login-password-container">
+                <mat-form-field appearance="outline"  class="formfield-email-container">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" placeholder="">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                </mat-form-field>
+            </div>
+            <div class="login-checkbox-container">
+                <section >
+                    <mat-checkbox class="login-checkbox" color="primary" [(ngModel)]="checked">Remember me</mat-checkbox>
+                </section>
+            </div>
+       </div>
+       
+    
+</mat-card>
