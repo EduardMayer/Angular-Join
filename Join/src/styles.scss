@@ -101,8 +101,13 @@ h1,h2,h3,h4{
     display: flex;
 }
 
-.mdc-text-field--outlined {
-    --mdc-outlined-text-field-container-shape: 10px !important;
-    color: rgba(168, 168, 168, 1);
-  }
+.mat-mdc-raised-button, .mat-mdc-unelevated-button {
+    --mat-mdc-button-persistent-ripple-color: rgba(255, 255, 255, 1) !important;
+}
+
+.mat-mdc-checkbox.mat-primary {
+    --mdc-checkbox-selected-focus-icon-color: rgb(42, 54, 71) !important;
+    --mdc-checkbox-selected-hover-icon-color: rgb(42, 54, 71) !important;
+    --mdc-checkbox-selected-icon-color: rgb(42, 54, 71) !important;
+}
 

@@ -50,8 +50,47 @@
     ::ng-deep mat-checkbox label {
         font-size: 16px ;
     }
-    
 }
 
+.login-button-container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 35px;
 
 
+    .login-button{
+        padding: 15px 24px;
+        background-color: rgba(42, 54, 71, 1);
+        color: rgba(255, 255, 255, 1);
+        border-radius: 8px;
+        font-size: 21px;
+        font-weight: 700;
+        height: 48px;
+
+        &:hover{
+            background-color: rgb(41, 171, 226);
+        }
+    }
+
+    .guest-login-button{
+        padding: 15px 24px;
+        background-color: rgba(255, 255, 255, 1);
+        color: rgba(42, 54, 71, 1);
+        border: 1px solid rgba(42, 54, 71, 1);
+        border-radius: 8px;
+        font-size: 21px;
+        font-weight: 700;
+        height: 48px;
+
+        &:hover{
+            border: 1px solid rgb(41, 171, 226);
+            color: rgb(41, 171, 226);
+            background-color: rgba(255, 255, 255, 1) !important;
+        }
+
+      }
+
+
+
+}

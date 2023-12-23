@@ -38,3 +38,25 @@
         }
     }
 }
+
+.lower-startscreen-container {
+    display: flex;
+    gap: 16px;
+    padding: 160px;
+
+    .lower-startscreen-box {
+        a {
+            padding: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(168, 168, 168, 1);
+            cursor: pointer;
+
+            &:hover {
+                color: rgba(41, 171, 226, 1);
+                
+            }
+        }
+    }
+}

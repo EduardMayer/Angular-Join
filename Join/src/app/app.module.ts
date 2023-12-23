@@ -20,7 +20,8 @@ import { MatInputModule } from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {FormsModule} from '@angular/forms';
-
+import { SidebarComponent } from './startscreen/sidebar/sidebar.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import {FormsModule} from '@angular/forms';
     PrivacyPolicyComponent,
     StartscreenComponent,
     MainscreenComponent,
+    SidebarComponent,
   
   ],
   imports: [
@@ -47,7 +49,8 @@ import {FormsModule} from '@angular/forms';
     MatInputModule,
     MatCheckboxModule,
     FormsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSidenavModule,
     
   ],
   providers: [],
