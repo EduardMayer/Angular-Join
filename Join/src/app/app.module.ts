@@ -22,6 +22,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {FormsModule} from '@angular/forms';
 import { SidebarComponent } from './startscreen/sidebar/sidebar.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { ToolbarComponent } from './startscreen/toolbar/toolbar.component'
 
 
 @NgModule({
@@ -35,6 +37,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     StartscreenComponent,
     MainscreenComponent,
     SidebarComponent,
+    ToolbarComponent,
   
   ],
   imports: [
@@ -51,6 +54,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     FormsModule,
     MatRadioModule,
     MatSidenavModule,
+    MatToolbarModule,
     
   ],
   providers: [],

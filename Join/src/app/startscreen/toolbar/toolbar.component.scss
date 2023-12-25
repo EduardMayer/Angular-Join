@@ -1,0 +1,16 @@
+.toolbar-container{
+    display: flex;
+    position: fixed;
+    height: 96px;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+    z-index: 2;
+    
+}
+
+.tootlbar-title{
+    padding-left: 348px;
+    font-weight: 400;
+    font-size: 20px;
+}
