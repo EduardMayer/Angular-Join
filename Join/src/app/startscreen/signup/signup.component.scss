@@ -1,0 +1,102 @@
+.sign-up-container{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 48px 88px;;
+    border-radius: 30px;
+    box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+    width: 630px;
+}
+
+
+.sign-up-checkbox-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.back-arrow{
+    display: flex;
+    position: absolute;
+    left: 50px;
+    cursor: pointer;
+}
+
+
+.sign-up-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 89px;
+    
+    h1{
+        font-size: 61px;
+        font-weight: 700;
+        
+    }
+    .title-underline{
+        margin-top: 16px;
+        border: 3px solid rgba(41, 171, 226, 1);
+        width: 150px;
+    }
+}
+
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-content: stretch;
+    justify-content: center;
+    align-items: flex-end;
+    
+    
+
+    .formfield-email-container{
+        display: flex;
+        width: 100%;
+    }
+}
+
+
+
+.sign-up-checkbox-box{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+
+    ::ng-deep mat-checkbox label {
+        font-size: 16px ;
+    }
+
+    a{
+        text-decoration: none;
+        color: rgba(41, 171, 226, 1);
+    }
+}
+
+
+
+.sign-up-button-container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 35px;
+    
+
+
+    .sign-up-button{
+        padding: 15px 24px;
+        background-color: rgba(42, 54, 71, 1);
+        color: rgba(255, 255, 255, 1);
+        border-radius: 8px;
+        font-size: 21px;
+        font-weight: 700;
+        height: 48px;
+
+        &:hover{
+            background-color: rgb(41, 171, 226);
+        }
+    }
+}

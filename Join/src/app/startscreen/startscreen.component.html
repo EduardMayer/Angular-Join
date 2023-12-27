@@ -13,18 +13,19 @@
         <div class="right-site-uper-box">
             <div class="right-inner-box">
                 <span>Not a Join user?</span>
-                <button class="sign-up-button" mat-raised-button >Sign up</button>
+                <button (click)="goToSignUp()" class="sign-up-button" mat-raised-button>Sign up</button>
             </div>
         </div>
     </div>
-    <app-login></app-login>
+    <app-login *ngIf="showLogin && !showSignUp"></app-login>
+    <app-signup *ngIf="showSignUp && !showLogin" (closeSignUpView)="closeSignUp()"></app-signup>
 
     <div class="lower-startscreen-container">
       <div class="lower-startscreen-box">
-        <a href="/privacypolicy" target="_blank">Privacy Policy</a>
+        <a routerLink="/privacypolicy" target="_blank">Privacy Policy</a>
       </div>
       <div class="lower-startscreen-box" >
-        <a href="/legalnotice" target="_blank">Legal notice</a>
+        <a routerLink="/legalnotice" target="_blank">Legal notice</a>
       </div>
     </div>
   
