@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "join-em-8442d": {
+      "hosting": {
+        "join": [
+          "join-em-8442d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "join-em-8442d"
+  }
+}
