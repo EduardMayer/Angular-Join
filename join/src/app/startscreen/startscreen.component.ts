@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { SignupComponent } from "./signup/signup.component";
 import { LoginComponent } from "./login/login.component";
-import { NgIf } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { NgIf } from '@angular/common';
     standalone: true,
     templateUrl: './startscreen.component.html',
     styleUrl: './startscreen.component.scss',
-    imports: [SignupComponent, LoginComponent, NgIf ]
+    imports: [SignupComponent, LoginComponent, RouterLink, MatButtonModule]
 })
 export class StartscreenComponent {
 
