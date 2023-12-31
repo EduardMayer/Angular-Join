@@ -1,5 +1,5 @@
 import { Component,} from '@angular/core';
-import { FormControl, Validators} from '@angular/forms';
+import { FormControl, Validators,} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
@@ -18,6 +18,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  
 
   hide = true;
   email = new FormControl('', [Validators.required, Validators.email]);

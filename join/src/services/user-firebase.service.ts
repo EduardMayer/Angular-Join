@@ -1,10 +1,7 @@
-import { AfterViewInit, Injectable, OnInit } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, updateDoc, doc, getDocs, onSnapshot, query, setDoc, where, getDoc } from "firebase/firestore";
 import { User } from '../models/user.class';
-import { getLocaleFirstDayOfWeek } from '@angular/common';
-import { AuthFirebaseService } from './auth-firebase.service';
-
 
 
 @Injectable({
@@ -12,11 +9,13 @@ import { AuthFirebaseService } from './auth-firebase.service';
 })
 export class UserFirebaseService {
     public loadedUsers: User[] = [];
+    
     private unsubUsers: any;
 
     public finishedLoading: boolean = false;
-
+    
     public loadedUser: User | undefined;
+
     private unsubUser: any;
 
     public currentUser: User = new User();
