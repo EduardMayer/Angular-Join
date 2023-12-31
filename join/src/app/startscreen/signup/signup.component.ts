@@ -1,17 +1,18 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { RouterLink} from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 
 import { UserFirebaseService } from 'e:/Projekte/Angular-Join/join/src/services/user-firebase.service';
 import { AuthFirebaseService } from 'e:/Projekte/Angular-Join/join/src/services/auth-firebase.service';
+import { NotificationService } from 'e:/Projekte/Angular-Join/join/src/services/notification.service';
+
 
 @Component({
   selector: 'app-signup',
@@ -26,6 +27,7 @@ export class SignupComponent {
   constructor(
     private userService: UserFirebaseService,
     private authService: AuthFirebaseService,
+    private notificationService: NotificationService,
     private fb: FormBuilder
   ) {}
 
@@ -129,18 +131,22 @@ export class SignupComponent {
     const name = this.signUpForm.get('name')?.value || '';
     const email = this.signUpForm.get('email')?.value || '';
     const password = this.signUpForm.get('password')?.value || '';
-    
     this.userService.registUser.fullName = name;
     this.userService.registUser.mail = email;
+  
     if (this.isFormValid) {
-    await this.authService.register(email, password)
-      .then(() => {
-        this.userService.addRegistUserWithUID(this.userService.registUser.id);
-        console.log('Registrierung erfolgreich');
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        console.error('Fehler bei der Registrierung:', errorCode);
-      });
-}}
+      await this.authService.register(email, password)
+        .then(() => {
+          this.notificationService.renderNotification("Registrierung erfolgreich", 'success', "shift-right-in", 2, true);
+          this.userService.addRegistUserWithUID(this.userService.registUser.id);
+          this.closeSignUp();
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          this.notificationService.renderNotification(`Fehler bei der Registrierung`, 'error', 'shift-right-in', 3, false);
+          console.log(errorCode);
+        });
+  
+    }
+  }
 }
