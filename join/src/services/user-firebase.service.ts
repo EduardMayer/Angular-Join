@@ -193,12 +193,5 @@ export class UserFirebaseService {
         }
     }
 
-    /**
-    * Lifecycle hook called when the component is about to be destroyed.
-    * Unsubscribes from any active subscription.
-    */
-    ngOnDestroy() {
-        this.unsubUsers();
-        this.unsubUser();
-    }
+   
 }

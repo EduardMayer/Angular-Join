@@ -9,6 +9,10 @@ import {FormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
+import { UserFirebaseService } from 'e:/Projekte/Angular-Join/join/src/services/user-firebase.service';
+import { AuthFirebaseService } from 'e:/Projekte/Angular-Join/join/src/services/auth-firebase.service';
+import { NotificationService } from 'e:/Projekte/Angular-Join/join/src/services/notification.service';
+
 
 @Component({
   selector: 'app-login',
@@ -18,12 +22,19 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  
 
-  hide = true;
+  constructor(
+    private userService: UserFirebaseService,
+    private authService: AuthFirebaseService,
+    private notificationService: NotificationService,
+  ) {}
+  
+  hidePassword = true;
   email = new FormControl('', [Validators.required, Validators.email]);
   checked = false;
   
+  guestLoginName = 'guest@join.de';
+  guestLoginPassword = 'JoinGuest';
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
@@ -32,5 +43,16 @@ export class LoginComponent {
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
+
+    /**
+ * Initiates a guest login process.
+ * 
+ * @returns {void}
+ */
+    async guestLogin() {
+      this.authService
+        .login(this.guestLoginName, this.guestLoginPassword)
+    }
+  
 
 }

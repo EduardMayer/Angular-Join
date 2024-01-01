@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink} from '@angular/router';
+import { RouterLink , Router} from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -14,6 +14,8 @@ import { AuthFirebaseService } from 'e:/Projekte/Angular-Join/join/src/services/
 import { NotificationService } from 'e:/Projekte/Angular-Join/join/src/services/notification.service';
 
 
+
+
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -23,11 +25,13 @@ import { NotificationService } from 'e:/Projekte/Angular-Join/join/src/services/
     ReactiveFormsModule, MatButtonModule, CommonModule, FormsModule, RouterLink],
 })
 export class SignupComponent {
+  
 
   constructor(
     private userService: UserFirebaseService,
     private authService: AuthFirebaseService,
     private notificationService: NotificationService,
+    private router: Router, 
     private fb: FormBuilder
   ) {}
 
@@ -57,6 +61,7 @@ export class SignupComponent {
   hidePassword: boolean = true;
   someCondition: boolean = true;
   checkboxChecked: boolean = false;
+ 
 
   signUpForm = this.fb.group(
     {
@@ -140,6 +145,7 @@ export class SignupComponent {
           this.notificationService.renderNotification("Registrierung erfolgreich", 'success', "shift-right-in", 2, true);
           this.userService.addRegistUserWithUID(this.userService.registUser.id);
           this.closeSignUp();
+          //this.router.navigate(['/index']);
         })
         .catch((error) => {
           const errorCode = error.code;

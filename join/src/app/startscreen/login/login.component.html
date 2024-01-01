@@ -27,9 +27,9 @@
          <div class="login-password-container">
              <mat-form-field appearance="outline"  class="formfield-email-container">
              <mat-label>Password</mat-label>
-             <input matInput [type]="hide ? 'password' : 'text'" placeholder="">
-             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                 <mat-icon class="passwordIcon">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+             <input matInput [type]="hidePassword? 'password' : 'text'" placeholder="">
+             <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                 <mat-icon class="passwordIcon">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
              </button>
              </mat-form-field>
          </div>
@@ -43,7 +43,7 @@
                      <button class="login-button" mat-raised-button >Log in</button>
              </div>
              <div class="right-button-containe">
-                     <button class="guest-login-button" mat-raised-button >Guest Log in</button>
+                     <button class="guest-login-button" mat-raised-button (click)="guestLogin()">Guest Log in</button>
              </div>
          </div>
     </div>
