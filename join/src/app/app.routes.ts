@@ -6,8 +6,9 @@ import { MainscreenComponent } from './mainscreen/mainscreen.component';
 
 
 export const routes: Routes = [
-    { path: '', component: StartscreenComponent },
-    { path: 'privacypolicy', component: PrivacyPolicyComponent },
-    { path: 'legalnotice', component: LegalNoticeComponent },
-    { path: 'index', component: MainscreenComponent },
+    { path: '', component: MainscreenComponent },
+    //{ path: '', component: StartscreenComponent },
+    //{ path: 'privacypolicy', component: PrivacyPolicyComponent },
+    //{ path: 'legalnotice', component: LegalNoticeComponent },
+    
 ]

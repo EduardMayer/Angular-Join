@@ -1,0 +1,104 @@
+.mainscreen-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.toolbar-container{
+    display: flex;
+    position: fixed;
+    height: 96px;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+    z-index: 2;
+    
+}
+
+.tootlbar-title{
+    padding-left: 348px;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+
+
+::ng-deep .mat-drawer-content {
+    justify-content: space-between;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.sidenav-container{
+    position: fixed;
+    flex-direction: column;
+    width: 234px;
+    height: 100%;
+    background-color: #2A3647;
+    z-index: 3;
+}
+
+.sidenav-navigation-container{
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+    width: 100%;
+
+    .navigation-box{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 56px;
+        font-size: 16px;
+        font-weight: 400;
+        color: rgba(205, 205, 205, 1);
+        cursor: pointer;
+    
+        &:hover{
+            background-color: rgba(42, 61, 89, 1);
+        }
+
+        &:focus{
+            background-color: rgba(9, 25, 49, 1);
+        }
+
+    }
+    padding-bottom: 243px;
+}
+
+.sidenav-logo{
+    display: flex;
+    padding-top: 64px;
+}
+
+.sidernav-footer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+    padding-bottom: 64px;
+
+    a {
+        padding: 8px ;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 400;
+        color: rgba(168, 168, 168, 1);
+        cursor: pointer;
+        padding-left: 52px;
+        
+
+        &:hover {
+            color: rgba(41, 171, 226, 1);
+            
+        }
+
+        &:focus{
+            background-color: rgba(9, 25, 49, 1);
+        }
+    }
+}
