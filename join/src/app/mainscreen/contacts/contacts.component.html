@@ -12,7 +12,15 @@
                     </g>
                     </svg></div>
             </div>
-            <div class="user-box"></div>
-        </div>
+            <div *ngFor="let group of userGroups" class="user-group">
+                <div class="group-header">{{ group.initial }}</div>
+                <div *ngFor="let user of group.users" class="user-box">
+                    <div class="user">
+                        <span>{{ user.fullName }}</span>
+                        <span>{{ user.mail }}</span>
+                    </div>
+                </div>
+            </div>
+            </div>
     </mat-card>
-<div>
+</div>

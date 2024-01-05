@@ -10,18 +10,17 @@ import { User } from '../models/user.class';
 export class UserFirebaseService {
     public loadedUsers: User[] = [];
     
-    private unsubUsers: any;
+    public unsubUsers: any;
 
     public finishedLoading: boolean = false;
     
     public loadedUser: User | undefined;
 
-    private unsubUser: any;
-
     public currentUser: User = new User();
 
     public registUser: User = new User();
-
+    
+    
     constructor(private firestore: Firestore) {
     }
 
@@ -36,30 +35,23 @@ export class UserFirebaseService {
     /**
     * Asynchronously loads user data from Firestore based on optional index parameters.
     */
-    async load() {
-        const q = query(collection(this.firestore, "users"));
-        this.unsubUsers = onSnapshot(q, (querySnapshot) => {
+    async load(): Promise<void> {
+        return new Promise((resolve) => {
+          const q = query(collection(this.firestore, "users"));
+          this.unsubUsers = onSnapshot(q, (querySnapshot) => {
+            console.log('onSnapshot called');
             this.loadedUsers = [];
             this.finishedLoading = false;
             querySnapshot.forEach((doc) => {
-                const user = new User(doc.data());
-                user.id = doc.id;
-                this.loadedUsers.push(user);
+              const user = new User(doc.data());
+              user.id = doc.id;
+              this.loadedUsers.push(user);
             });
             this.finishedLoading = true;
-            this.loadedUsers = this.sortByUsersByName(this.loadedUsers);
+            resolve();
+          });
         });
-    }
-
-
-    /**
-     * Sorts an array of users
-     * @param users - user to sort 
-     * @returns - sorted users
-     */
-    sortByUsersByName(users: User[]) {
-        return users.slice().sort((a, b) => a.fullName.localeCompare(b.fullName));
-    }
+      }
 
 
     /**
