@@ -1,0 +1,44 @@
+.contacts-container{
+    height: 100vh;
+    display: flex;
+}
+
+
+
+.left-container{
+    display: flex;
+    margin-left: 232px;
+    margin-top: 96px;
+    width:456px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 1) !important;
+    box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
+}
+
+
+.left-contacts-box{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 32px 24px;
+
+
+    .add-contact-box{
+        display: flex;
+        background-color: rgb(42, 54, 71);
+        color: white;
+        border-radius: 10px;
+        gap: 16px;
+        font-size: 21px;
+        font-weight: 700;
+        align-items: center;
+        justify-content: center;
+        width: 352px;
+        padding: 12px;
+        cursor: pointer;
+
+        &:hover{
+            background-color: rgba(41, 171, 226, 1);
+        }
+    }
+}

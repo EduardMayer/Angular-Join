@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
-  imports: [],
+  imports: [MatCardModule, RouterLink],
   templateUrl: './contacts.component.html',
   styleUrl: './contacts.component.scss'
 })

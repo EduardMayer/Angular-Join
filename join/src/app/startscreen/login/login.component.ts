@@ -9,9 +9,9 @@ import {FormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
-import { UserFirebaseService } from 'e:/Projekte/Angular-Join/join/src/services/user-firebase.service';
-import { AuthFirebaseService } from 'e:/Projekte/Angular-Join/join/src/services/auth-firebase.service';
-import { NotificationService } from 'e:/Projekte/Angular-Join/join/src/services/notification.service';
+import { UserFirebaseService } from '../../../services/user-firebase.service';
+import { AuthFirebaseService } from '../../../services/auth-firebase.service';
+import { NotificationService } from '../../../services/notification.service';
 
 
 @Component({

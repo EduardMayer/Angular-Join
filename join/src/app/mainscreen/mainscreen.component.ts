@@ -3,12 +3,13 @@ import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { ContactsComponent } from './contacts/contacts.component';
 
 
 @Component({
   selector: 'app-mainscreen',
   standalone: true,
-  imports: [LegalNoticeComponent, MatSidenavModule, MatToolbarModule, PrivacyPolicyComponent,],
+  imports: [LegalNoticeComponent, MatSidenavModule, MatToolbarModule, PrivacyPolicyComponent, ContactsComponent],
   templateUrl: './mainscreen.component.html',
   styleUrl: './mainscreen.component.scss'
 })
