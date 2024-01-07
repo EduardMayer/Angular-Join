@@ -1,7 +1,7 @@
 <div class="contacts-container">
     <mat-card class="left-container">
         <div class="left-contacts-box">
-            <div class="add-contact-box">
+            <div class="add-contact-box" (click)="load()">
                 <span>Add new contact</span>
                 <div><svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
                     <mask id="mask0_121230_4145" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="33" height="33">
@@ -14,13 +14,15 @@
             </div>
             <div *ngFor="let group of userGroups" class="user-group">
                 <div class="group-header">{{ group.initial }}</div>
+                <div class="group-underscore"></div>
                 <div *ngFor="let user of group.users" class="user-box">
                     <div class="user">
-                        <span>{{ user.fullName }}</span>
-                        <span>{{ user.mail }}</span>
+                        <span class="user-name">{{ user.fullName }}</span>
+                        <span class="user-mail">{{ user.mail }}</span>
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
+           
     </mat-card>
 </div>

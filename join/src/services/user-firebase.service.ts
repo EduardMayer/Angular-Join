@@ -4,6 +4,7 @@ import { collection, updateDoc, doc, getDocs, onSnapshot, query, setDoc, where, 
 import { User } from '../models/user.class';
 
 
+
 @Injectable({
     providedIn: 'root'
 })
@@ -35,7 +36,7 @@ export class UserFirebaseService {
     /**
     * Asynchronously loads user data from Firestore based on optional index parameters.
     */
-    async load(): Promise<void> {
+   /* async load(): Promise<void> {
         return new Promise((resolve) => {
           const q = query(collection(this.firestore, "users"));
           this.unsubUsers = onSnapshot(q, (querySnapshot) => {
@@ -52,6 +53,27 @@ export class UserFirebaseService {
           });
         });
       }
+*/
+
+
+async loadUser() {
+    const userProfileCollection = collection(this.firestore, 'users');
+  
+    try {
+      const querySnapshot = await getDocs(userProfileCollection);
+  
+      this.loadedUsers = querySnapshot.docs.map((doc) => {
+        const userData = doc.data();
+        const user = new User(userData);
+        user.id = doc.id;
+        return user;
+      });
+  
+      this.finishedLoading = true;
+    } catch (error) {
+      console.error('Fehler beim Laden der Benutzerdaten:', error);
+    }
+  }
 
 
     /**
@@ -172,7 +194,7 @@ export class UserFirebaseService {
      * @returns {boolean} Returns `true` if the email exists in the loaded users, or `false` otherwise.
      */
     mailExists(mail: string) {
-        this.load();
+    //    this.load();
         if (this.loadedUsers[0]) {
             for (let i = 0; i < this.loadedUsers.length; i++) {
                 if (this.loadedUsers[i].mail === mail) {

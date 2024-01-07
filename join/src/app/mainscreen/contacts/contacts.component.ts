@@ -18,12 +18,16 @@ export class ContactsComponent implements OnInit {
     public userService: UserFirebaseService
   ) {}
 
-  async ngOnInit() {
-    await this.userService.load();
-    this.groupUsersByInitial();
-    console.log('User Groups:', this.userGroups);
+  ngOnInit() {
+    
   }
 
+
+  load() {
+    this.userService.loadUser().then(() => {
+      this.groupUsersByInitial();
+    });
+  }
   groupUsersByInitial() {
     this.userGroups = [];
     

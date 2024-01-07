@@ -118,7 +118,7 @@ export class AuthFirebaseService implements OnInit {
     await this.userService.setUIDToCurrentUser(this.UserData.uid);
     await this.userService.syncMail(this.UserData.email);
     this.firebaseUserService.currentUser.id=this.UserData.uid;
-    await this.firebaseUserService.load();
+    //await this.firebaseUserService.load();
   }
 
   /**
