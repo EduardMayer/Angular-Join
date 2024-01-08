@@ -109,6 +109,11 @@ h1,h2,h3,h4{
     --mdc-checkbox-selected-icon-color: rgb(42, 54, 71) !important;
 }
 
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: 30px !important;
+}
+
 .notification-container {
   position: absolute;
   top: 0;

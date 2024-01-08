@@ -1,0 +1,98 @@
+body{
+    border-radius: 30px;
+}
+
+.add-contact-container{
+    display: flex;
+    border-radius: 30px;
+    flex-direction: row;
+}
+
+
+.left-contact-container{
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 66px 48px;
+    background-color: rgba(42, 54, 71, 1);
+    max-height: 592px;
+    color: white;
+    gap: 8px;
+    height: 494px;
+    min-width: 220px;
+
+    .left-contact-box{
+        margin-top: 88px;
+
+        .contact-title{
+            font-size: 61px;
+            font-weight: 700;
+            line-height: 120%
+        }
+    
+        .contact-description{
+            font-size: 27px;
+            font-weight: 400;
+            line-height: 120%;
+        }
+    
+        .contact-underscore{
+            display: flex;
+            height: 90px;
+            transform: rotate(90deg);
+            background-color: rgba(41, 171, 226, 1);
+            width: 2px;
+            margin-top: -29px;
+            margin-left: 45px;
+            
+        }
+    }
+}
+
+.right-contact-container{
+    display: flex;
+    flex-direction: row;
+    width: 745px;
+
+
+    .contact-picture-box{
+        display: flex;
+        background-color: rgb(209, 209, 209);
+        width: 120px;
+        height: 120px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 70px;
+        margin-top: 204px;
+        margin-left: 83px;
+        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+        border: 3px solid var(--white, #FFF);
+    }
+
+
+    .contact-form-container {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        align-content: stretch;
+        padding-top: 60px;
+        padding-right: 48px;
+        padding-left: 72px;
+        width: calc(100% - 320px);
+    
+        .contact-close-box {
+            display: flex;
+            justify-content: flex-end;
+            padding-bottom: 30px;
+    
+            .svg, svg {
+                cursor: pointer;
+            }
+        }
+    
+        .formfield-email-container {
+            display: flex;
+            width: 100%;
+        }
+    }
+}

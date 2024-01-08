@@ -2,12 +2,14 @@ export class User {
     id: string;
     fullName:string;
     mail: string;
+    phone: number;
     
     
     constructor(obj?: any) {
         this.id = obj ? obj.id : "";
         this.fullName = obj ? obj.fullName : "";
         this.mail = obj ? obj.mail : "";
+        this.phone = obj ? obj.phone : "";
     }
 
     toJSON() {
@@ -15,6 +17,7 @@ export class User {
             id: this.id,
             fullName: this.fullName,
             mail: this.mail,
+            phone: this.phone,
         }
     }
 }
