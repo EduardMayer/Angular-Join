@@ -11,6 +11,8 @@ import { User } from '../models/user.class';
 export class UserFirebaseService {
 
     public loadedUsers: User[] = [];
+
+    public userGroups: { initial: string, users: any[] }[] = [];
     
     public unsubUsers: any;
 
@@ -85,6 +87,22 @@ export class UserFirebaseService {
         }
     }
 
+    
+    async groupUsersByInitial() {
+        this.userGroups = [];
+        this.loadedUsers.forEach(user => {
+          const initial = user.fullName.charAt(0).toUpperCase();
+          const existingGroup = this.userGroups.find(group => group.initial === initial);
+    
+          if (existingGroup) {
+            existingGroup.users.push(user);
+          } else {
+            this.userGroups.push({ initial, users: [user] });
+          }
+        });
+        this.userGroups.sort((a, b) => a.initial.localeCompare(b.initial));
+      }
+    
 
     /**
      * Creates a new User with a Custom ID. To create a new User you should take UID from Firebase Authentication.  

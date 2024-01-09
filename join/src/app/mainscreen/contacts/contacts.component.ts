@@ -16,35 +16,18 @@ import { MatDialog } from '@angular/material/dialog';
 })
 
 export class ContactsComponent implements OnInit {
+  
   async ngOnInit(){
   await this.userService.load();
-  this.groupUsersByInitial();
+  await this.userService.groupUsersByInitial();
   }
 
-
-  userGroups: { initial: string, users: any[] }[] = [];
-
-
+  
   constructor(
     public userService: UserFirebaseService,
     public dialog: MatDialog,
   ) {}
 
-
-  groupUsersByInitial() {
-    this.userGroups = [];
-    this.userService.loadedUsers.forEach(user => {
-      const initial = user.fullName.charAt(0).toUpperCase();
-      const existingGroup = this.userGroups.find(group => group.initial === initial);
-
-      if (existingGroup) {
-        existingGroup.users.push(user);
-      } else {
-        this.userGroups.push({ initial, users: [user] });
-      }
-    });
-    this.userGroups.sort((a, b) => a.initial.localeCompare(b.initial));
-  }
 
   openAddUser() {
     this.dialog.open(AddContactDialogComponent);
