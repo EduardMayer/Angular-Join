@@ -1,4 +1,4 @@
-import { Injectable} from '@angular/core';
+import { Injectable, EventEmitter} from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, updateDoc, doc, getDocs, onSnapshot, query, setDoc, where, getDoc } from "firebase/firestore";
 import { User } from '../models/user.class';
@@ -9,6 +9,7 @@ import { User } from '../models/user.class';
     providedIn: 'root'
 })
 export class UserFirebaseService {
+
     public loadedUsers: User[] = [];
     
     public unsubUsers: any;
@@ -36,22 +37,23 @@ export class UserFirebaseService {
     /**
     * Asynchronously loads user data from Firestore based on optional index parameters.
     */
-    async load(): Promise<void> {
-        return new Promise((resolve) => {
-          const q = query(collection(this.firestore, "users"));
-          this.unsubUsers = onSnapshot(q, (querySnapshot) => {
-            console.log('onSnapshot called');
-            this.loadedUsers = [];
-            this.finishedLoading = false;
-            querySnapshot.forEach((doc) => {
-              const user = new User(doc.data());
-              user.id = doc.id;
-              this.loadedUsers.push(user);
-            });
-            this.finishedLoading = true;
-            resolve();
+    async load(){
+        const q = query(collection(this.firestore, "users"));
+        try {
+          const querySnapshot = await getDocs(q);
+          this.loadedUsers = [];
+          this.finishedLoading = false;
+
+          querySnapshot.forEach((doc) => {
+            const user = new User(doc.data());
+            user.id = doc.id;
+            this.loadedUsers.push(user);
+            
           });
-        });
+          this.finishedLoading = true;
+        } catch (error) {
+          console.error('Error during query:', error);
+        }
       }
 
     /**
@@ -65,6 +67,24 @@ export class UserFirebaseService {
             updateDoc(docInstance, user.toJSON());
         }
     }
+
+
+    // In Ihrer UserFirebaseService-Klasse
+    async addNewUserData(name: string, email: string, phone: number) {
+        try {
+            this.registUser.fullName = name;
+            this.registUser.mail = email;
+            this.registUser.phone = phone;
+    
+            const contactRef = doc(collection(this.firestore, "users"));
+            await setDoc(contactRef, this.registUser.toJSON());
+            this.load();
+
+        } catch (error) {
+            console.error("Fehler beim Hinzufügen des Kontakts:", error);
+        }
+    }
+
 
     /**
      * Creates a new User with a Custom ID. To create a new User you should take UID from Firebase Authentication.  

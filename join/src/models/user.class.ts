@@ -1,4 +1,9 @@
+import { CollectionReference, DocumentData } from "firebase/firestore";
+
 export class User {
+    uid(arg0: CollectionReference<DocumentData, DocumentData>, uid: any) {
+        throw new Error('Method not implemented.');
+    }
     id: string;
     fullName:string;
     mail: string;

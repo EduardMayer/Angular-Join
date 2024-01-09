@@ -8,6 +8,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { UserFirebaseService } from '../../../../services/user-firebase.service';
+import { NotificationService } from '../../../../services/notification.service';
+
+
 
 @Component({
   selector: 'app-add-contact-dialog',
@@ -18,11 +21,7 @@ import { UserFirebaseService } from '../../../../services/user-firebase.service'
   styleUrl: './add-contact-dialog.component.scss'
 })
 export class AddContactDialogComponent {
-
-  constructor(
-    public userService: UserFirebaseService,
-    public dialogRef: MatDialogRef<AddContactDialogComponent> // Inject MatDialogRef
-  ) {}
+  creatForm: FormGroup;
 
   name: FormControl = new FormControl('', [
     Validators.required,
@@ -35,9 +34,21 @@ export class AddContactDialogComponent {
   ]);
 
   phone: FormControl = new FormControl('', [
-    Validators.required,
     Validators.pattern(/^[0-9]+$/),
   ]);
+
+  constructor(
+    public userService: UserFirebaseService,
+    public dialogRef: MatDialogRef<AddContactDialogComponent>,
+    private notificationService: NotificationService,
+    private fb: FormBuilder,
+  ) {
+    this.creatForm = this.fb.group({
+      name: this.name,
+      email: this.email,
+      phone: this.phone,
+    });
+  }
 
   getErrorMessageName(): string {
     return this.name.hasError('required')
@@ -64,4 +75,22 @@ export class AddContactDialogComponent {
   closeAddContact() {
     this.dialogRef.close();
   }
+
+  get isFormValid(): boolean {
+    return this.creatForm.valid;
+  }
+  
+  async addNewUser() {
+    if (this.isFormValid) {
+      const name = this.creatForm.get('name')?.value || '';
+      const email = this.creatForm.get('email')?.value || '';
+      const phone = this.creatForm.get('phone')?.value || '';
+  
+      this.userService.addNewUserData(name, email, phone);
+      await this.userService.load();
+      this.notificationService.renderNotification('Kontakt erfolgreich erstellt', 'create', 'shift-right-in', 2, true);
+      this.closeAddContact();
+    }
+  }
+  
 }

@@ -43,8 +43,6 @@ export class ContactsComponent implements OnInit {
         this.userGroups.push({ initial, users: [user] });
       }
     });
-
-    // Sortiere die Gruppen nach dem Anfangsbuchstaben
     this.userGroups.sort((a, b) => a.initial.localeCompare(b.initial));
   }
 
