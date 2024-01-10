@@ -89,7 +89,7 @@ export class AddContactDialogComponent {
       this.userService.addNewUserData(name, email, phone);
       await this.userService.load();
       await this.userService.groupUsersByInitial();
-      this.notificationService.renderNotification('Kontakt erfolgreich erstellt', 'create', 'shift-right-in', 2, true);
+      this.notificationService.renderNotification('Contact succesfully created', 'create', 'shift-right-in', 4, true);
       this.closeAddContact();
     }
   }

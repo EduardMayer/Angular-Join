@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter} from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
-import { collection, updateDoc, doc, getDocs, onSnapshot, query, setDoc, where, getDoc } from "firebase/firestore";
+import { collection, updateDoc, doc, getDocs, onSnapshot, query, setDoc, where, getDoc, deleteDoc } from "firebase/firestore";
 import { User } from '../models/user.class';
 
 
@@ -12,7 +12,7 @@ export class UserFirebaseService {
 
     public loadedUsers: User[] = [];
 
-    public userGroups: { initial: string, users: any[] }[] = [];
+    public userGroups: { firstInitial: string, lastInitial: string, users: any[] }[] = [];
     
     public unsubUsers: any;
 
@@ -71,6 +71,20 @@ export class UserFirebaseService {
     }
 
 
+     /**
+   * Löscht einen Benutzer anhand seiner ID aus Firestore.
+   * @param userId - Die ID des zu löschenden Benutzers.
+   */
+     async deleteUserById(userId: string) {
+        try {
+          const docRef = doc(this.firestore, 'users', userId);
+          await deleteDoc(docRef);
+        } catch (error) {
+          console.error('Error deleting user:', error);
+        }
+      }
+
+
     // In Ihrer UserFirebaseService-Klasse
     async addNewUserData(name: string, email: string, phone: number) {
         try {
@@ -91,18 +105,33 @@ export class UserFirebaseService {
     async groupUsersByInitial() {
         this.userGroups = [];
         this.loadedUsers.forEach(user => {
-          const initial = user.fullName.charAt(0).toUpperCase();
-          const existingGroup = this.userGroups.find(group => group.initial === initial);
+            // Get the first name and last name
+            const names = user.fullName.split(' ');
+            const firstName = names[0];
+            const lastName = names.length > 1 ? names[names.length - 1] : '';
     
-          if (existingGroup) {
-            existingGroup.users.push(user);
-          } else {
-            this.userGroups.push({ initial, users: [user] });
-          }
+            // Get the first initial of the first name
+            const firstInitial = firstName ? firstName.charAt(0).toUpperCase() : '';
+    
+            // Get the first initial of the last name
+            const lastInitial = lastName ? lastName.charAt(0).toUpperCase() : '';
+    
+            // Find existing group based on both first and last initials
+            const existingGroup = this.userGroups.find(group => group.firstInitial === firstInitial && group.lastInitial === lastInitial);
+    
+            if (existingGroup) {
+                existingGroup.users.push(user);
+            } else {
+                this.userGroups.push({ firstInitial, lastInitial, users: [user] });
+            }
         });
-        this.userGroups.sort((a, b) => a.initial.localeCompare(b.initial));
-      }
     
+        // Sort the user groups based on both first and last initials
+        this.userGroups.sort((a, b) => {
+            const result = a.lastInitial.localeCompare(b.lastInitial);
+            return result !== 0 ? result : a.firstInitial.localeCompare(b.firstInitial);
+        });
+    }
 
     /**
      * Creates a new User with a Custom ID. To create a new User you should take UID from Firebase Authentication.  

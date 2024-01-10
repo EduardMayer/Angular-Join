@@ -27,6 +27,7 @@ export class NotificationService {
         let element = document.createElement("div");
         element.classList.add('notification-card');
         element.classList.add(isSuccess ? 'success' : 'error');
+        element.classList.add('create');
         element.style.animation = `${animation} ${duration}s ease-in-out`;
         element.innerHTML = message;
         container.appendChild(element);

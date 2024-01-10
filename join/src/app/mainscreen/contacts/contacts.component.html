@@ -15,18 +15,35 @@
             @for  (group of userService.userGroups ; track group){
             <div class="user-group">
                <div class="group-header">
-                {{ group.initial }}
+                {{ group.firstInitial }}
                 </div>
                 <div class="group-underscore"></div>
-            
+
+                
                 @for (user of group.users; track user){
-                    <div class="user-box">
-                    <div class="user">
-                        <span class="user-name">{{ user.fullName }}</span>
-                        <span class="user-mail">{{ user.mail }}</span>
-                    </div>
-                </div>}
+                    <div class="user-box" (click)="showUserDetails(user, group)">
+                        <div class="user-initial">
+                            {{ group.firstInitial }}
+                            {{ group.lastInitial }}
+                        </div>
+                        <div class="user">
+                            <span class="user-name">{{ user.fullName }}</span>
+                            <span class="user-mail">{{ user.mail }}</span>
+                        </div>
+                   </div>}
             </div>}
         </div> 
+    </mat-card>
+    <mat-card class="right-container">
+        <div class="right-contacts-box">
+            <div class="contacts-title-box">
+                <div class="contacts-title">Contacts</div>
+                <div class="contacts-score"></div>
+                <div class="contacts-text">Better with a team</div>
+            </div>
+        </div>
+        <div class="contact-card">
+            <app-show-contact-card [selectedUser]="selectedUser"></app-show-contact-card>
+        </div>
     </mat-card>
 </div>

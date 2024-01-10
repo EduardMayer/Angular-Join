@@ -5,17 +5,20 @@ import { NgFor} from '@angular/common';
 import { AddContactDialogComponent } from './add-contact-dialog/add-contact-dialog.component';
 import { EditContactDialogComponent } from './edit-contact-dialog/edit-contact-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ShowContactCardComponent } from './show-contact-card/show-contact-card.component';
 
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
   templateUrl: './contacts.component.html',
-  imports: [MatCardModule, NgFor, AddContactDialogComponent, EditContactDialogComponent],
+  imports: [MatCardModule, NgFor, AddContactDialogComponent, EditContactDialogComponent, ShowContactCardComponent],
   styleUrls: ['./contacts.component.scss']
 })
 
 export class ContactsComponent implements OnInit {
+
+  selectedUser: any;
   
   async ngOnInit(){
   await this.userService.load();
@@ -32,6 +35,14 @@ export class ContactsComponent implements OnInit {
   openAddUser() {
     this.dialog.open(AddContactDialogComponent);
   }
+
+  showUserDetails(user: any, group: any): void {
+    this.selectedUser = {
+        ...user,
+        ...group,
+       
+    };
+}
   
 
 }
