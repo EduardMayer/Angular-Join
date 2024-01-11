@@ -3,7 +3,6 @@ import { UserFirebaseService } from '../../../services/user-firebase.service';
 import { MatCardModule } from '@angular/material/card';
 import { NgFor} from '@angular/common';
 import { AddContactDialogComponent } from './add-contact-dialog/add-contact-dialog.component';
-import { EditContactDialogComponent } from './edit-contact-dialog/edit-contact-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowContactCardComponent } from './show-contact-card/show-contact-card.component';
 
@@ -12,13 +11,13 @@ import { ShowContactCardComponent } from './show-contact-card/show-contact-card.
   selector: 'app-contacts',
   standalone: true,
   templateUrl: './contacts.component.html',
-  imports: [MatCardModule, NgFor, AddContactDialogComponent, EditContactDialogComponent, ShowContactCardComponent],
+  imports: [MatCardModule, NgFor, AddContactDialogComponent, ShowContactCardComponent],
   styleUrls: ['./contacts.component.scss']
 })
 
 export class ContactsComponent implements OnInit {
-
   selectedUser: any;
+  focusedUserBoxId: string | null = null;
   
   async ngOnInit(){
   await this.userService.load();
@@ -39,10 +38,15 @@ export class ContactsComponent implements OnInit {
   showUserDetails(user: any, group: any): void {
     this.selectedUser = {
         ...user,
-        ...group,
-       
+        ...group, 
     };
-}
-  
+    
+  }
+
+  setFocusedUserBox(userBoxId: string) {
+    this.focusedUserBoxId = userBoxId;
+  }
+
+
 
 }

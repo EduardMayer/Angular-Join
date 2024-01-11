@@ -70,13 +70,15 @@
       border-radius: 10px;
       height: 60px;
 
-      &:hover {
-        background-color: #f6f7f8;
+      &:focus,
+      &.focused {
+      background-color: rgba(42, 54, 71, 1);
+      color: white;
       }
 
-      &:focus {
-        background-color: rgba(42, 54, 71, 1);
-        color: white;
+      &:not(:focus):not(.focused):hover {
+        background-color: #f6f7f8;
+      
       }
 
       .user-initial {

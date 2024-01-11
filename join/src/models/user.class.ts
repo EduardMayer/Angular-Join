@@ -1,20 +1,14 @@
-import { CollectionReference, DocumentData } from "firebase/firestore";
-
 export class User {
-    uid(arg0: CollectionReference<DocumentData, DocumentData>, uid: any) {
-        throw new Error('Method not implemented.');
-    }
     id: string;
-    fullName:string;
+    fullName: string;
     mail: string;
-    phone: number;
-    
-    
+    phone: string;
+
     constructor(obj?: any) {
-        this.id = obj ? obj.id : "";
-        this.fullName = obj ? obj.fullName : "";
-        this.mail = obj ? obj.mail : "";
-        this.phone = obj ? obj.phone : "";
+        this.id = obj && obj.id || "";
+        this.fullName = obj && obj.fullName || "";
+        this.mail = obj && obj.mail || "";
+        this.phone = obj && obj.phone || "";
     }
 
     toJSON() {
@@ -23,6 +17,6 @@ export class User {
             fullName: this.fullName,
             mail: this.mail,
             phone: this.phone,
-        }
+        };
     }
 }

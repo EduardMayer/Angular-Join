@@ -21,7 +21,8 @@
 
                 
                 @for (user of group.users; track user){
-                    <div class="user-box" (click)="showUserDetails(user, group)">
+                    <div class="user-box" tabindex="0" (click)="showUserDetails(user, group); setFocusedUserBox('user-box-' + user.id)"
+                    [class.focused]="focusedUserBoxId === 'user-box-' + user.id">
                         <div class="user-initial">
                             {{ group.firstInitial }}
                             {{ group.lastInitial }}

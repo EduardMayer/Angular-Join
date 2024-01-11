@@ -34,7 +34,7 @@ export class AddContactDialogComponent {
   ]);
 
   phone: FormControl = new FormControl('', [
-    Validators.pattern(/^[0-9]+$/),
+    Validators.pattern(/^[0-9+]+$/),
   ]);
 
   constructor(

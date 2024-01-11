@@ -16,6 +16,7 @@ export class UserFirebaseService {
     
     public unsubUsers: any;
 
+
     public finishedLoading: boolean = false;
     
     public loadedUser: User | undefined;
@@ -63,10 +64,10 @@ export class UserFirebaseService {
     * Depending on if user.id is given
     * @param {User} user - The user object to be updated or created.
      */
-    async update(user: User) {
-        if (user.id != "") {
-            const docInstance = doc(this.firestore, 'users', user.id);
-            updateDoc(docInstance, user.toJSON());
+    async update(user: User, userId: string) {
+        if (userId !== "") {
+            const docInstance = doc(this.firestore, 'users', userId);
+            await updateDoc(docInstance, user.toJSON());
         }
     }
 
@@ -86,7 +87,7 @@ export class UserFirebaseService {
 
 
     // In Ihrer UserFirebaseService-Klasse
-    async addNewUserData(name: string, email: string, phone: number) {
+    async addNewUserData(name: string, email: string, phone: string) {
         try {
             this.registUser.fullName = name;
             this.registUser.mail = email;
@@ -105,31 +106,27 @@ export class UserFirebaseService {
     async groupUsersByInitial() {
         this.userGroups = [];
         this.loadedUsers.forEach(user => {
-            // Get the first name and last name
-            const names = user.fullName.split(' ');
-            const firstName = names[0];
-            const lastName = names.length > 1 ? names[names.length - 1] : '';
+            const [firstName, lastName] = user.fullName.split(' ');
+            const firstInitial = firstName?.charAt(0).toUpperCase();
+            const lastInitial = lastName?.charAt(0).toUpperCase();
     
-            // Get the first initial of the first name
-            const firstInitial = firstName ? firstName.charAt(0).toUpperCase() : '';
+            const existingGroupIndex = this.userGroups.findIndex(group => group.firstInitial === firstInitial && group.lastInitial === lastInitial);
     
-            // Get the first initial of the last name
-            const lastInitial = lastName ? lastName.charAt(0).toUpperCase() : '';
-    
-            // Find existing group based on both first and last initials
-            const existingGroup = this.userGroups.find(group => group.firstInitial === firstInitial && group.lastInitial === lastInitial);
-    
-            if (existingGroup) {
-                existingGroup.users.push(user);
+            if (existingGroupIndex !== -1) {
+                this.userGroups[existingGroupIndex].users.push(user);
             } else {
-                this.userGroups.push({ firstInitial, lastInitial, users: [user] });
+                const initialGroup = { firstInitial, lastInitial, users: [user] };
+                this.userGroups.push(initialGroup);
             }
         });
-    
-        // Sort the user groups based on both first and last initials
+        this.sortUserGroups();
+    }
+
+
+    async sortUserGroups() {
         this.userGroups.sort((a, b) => {
-            const result = a.lastInitial.localeCompare(b.lastInitial);
-            return result !== 0 ? result : a.firstInitial.localeCompare(b.firstInitial);
+            const firstComparison = a.firstInitial.localeCompare(b.firstInitial);
+            return firstComparison !== 0 ? firstComparison : a.lastInitial.localeCompare(b.lastInitial);
         });
     }
 
@@ -192,16 +189,10 @@ export class UserFirebaseService {
      */
     updateEmail(newEmail: string) {
         this.currentUser.mail = newEmail;
-        this.update(this.currentUser);
+      //  this.update(this.currentUser);
     }
 
-    /**
-     * Update the current user in firestore database.
-     */
-    async updateCurrentUserToFirebase() {
-        this.update(this.currentUser);
-    }
-
+ 
     /**
      * Chechs if email is same as the given (authentication) and updates in firestore database.
      * @param email - email adress of authentication
@@ -209,7 +200,7 @@ export class UserFirebaseService {
     async syncMail(email: string) {
         if (this.currentUser.mail != email) {
             this.currentUser.mail = email;
-            this.updateCurrentUserToFirebase();
+         //   this.updateCurrentUserToFirebase();
         }
     }
 
