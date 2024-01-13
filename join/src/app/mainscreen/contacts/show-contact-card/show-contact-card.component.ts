@@ -20,26 +20,25 @@ export class ShowContactCardComponent {
     public dialog: MatDialog) {}
 
 
-  async deleteSelectedUser() {
-    if (this.selectedUser && this.selectedUser.id) {
-      const userIdToDelete = this.selectedUser.id;
-      this.userService.deleteUserById(userIdToDelete);
-      await this.userService.load();
-      await this.userService.groupUsersByInitial();
-      this.selectedUser = null;
+    async deleteSelectedUser() {
+      if (this.selectedUser && this.selectedUser.id) {
+        const userIdToDelete = this.selectedUser.id;
+        await this.userService.deleteUserById(userIdToDelete);
+        this.selectedUser = null;
+        await this.userService.load();
+        await this.userService.groupUsersByInitial();
+      }
     }
-  }
 
   editUser() {
     const dialogRef = this.dialog.open(EditContactDialogComponent, {
       data: { selectedUser: this.selectedUser },
     });
-  };
-
   
-  onUserDeleted() {
-    console.log('onUserDeleted called');
-    this.selectedUser = null;
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result && result.isDelete) {
+        this.selectedUser = null;
+      }
+    });
   }
-
 }

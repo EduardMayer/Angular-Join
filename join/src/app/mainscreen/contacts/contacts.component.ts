@@ -47,6 +47,4 @@ export class ContactsComponent implements OnInit {
     this.focusedUserBoxId = userBoxId;
   }
 
-
-
 }

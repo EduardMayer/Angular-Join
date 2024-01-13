@@ -104,11 +104,11 @@ export class EditContactDialogComponent implements OnInit {
         mail: this.creatForm.value.email,
         phone: this.creatForm.value.phone,
       };
-
+  
       this.userService.update(new User(updatedUser), this.selectedUser.id);
       this.userService.load().then(() => {
-      this.userService.groupUsersByInitial();
-      this.dialogRef.close();
+        this.userService.groupUsersByInitial();
+        this.dialogRef.close();
       });
     }
   }
@@ -120,13 +120,18 @@ export class EditContactDialogComponent implements OnInit {
       await this.userService.deleteUserById(userIdToDelete);
       await this.userService.load();
       await this.userService.groupUsersByInitial();
-      this.dialogRef.close();
-
+      this.sendUserDeletedData(); 
     }
   }
 
+
+  sendUserDeletedData() {
+    this.userDeleted.emit();
+    this.dialogRef.close({ isDelete: true });
 }
 
+
+}
 
 
 

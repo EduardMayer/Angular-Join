@@ -106,22 +106,20 @@ export class UserFirebaseService {
     async groupUsersByInitial() {
         this.userGroups = [];
         this.loadedUsers.forEach(user => {
-            const [firstName, lastName] = user.fullName.split(' ');
-            const firstInitial = firstName?.charAt(0).toUpperCase();
-            const lastInitial = lastName?.charAt(0).toUpperCase();
-    
-            const existingGroupIndex = this.userGroups.findIndex(group => group.firstInitial === firstInitial && group.lastInitial === lastInitial);
-    
-            if (existingGroupIndex !== -1) {
-                this.userGroups[existingGroupIndex].users.push(user);
-            } else {
-                const initialGroup = { firstInitial, lastInitial, users: [user] };
-                this.userGroups.push(initialGroup);
-            }
+          const [firstName, lastName] = user.fullName.split(' ');
+          const firstInitial = firstName?.charAt(0).toUpperCase();
+          const lastInitial = lastName?.charAt(0).toUpperCase();
+          const existingGroupIndex = this.userGroups.findIndex(group => group.firstInitial === firstInitial);
+      
+          if (existingGroupIndex !== -1) {
+            this.userGroups[existingGroupIndex].users.push(user);
+          } else {
+            const initialGroup = {firstInitial,lastInitial,users: [user],};
+            this.userGroups.push(initialGroup);
+          }
         });
         this.sortUserGroups();
-    }
-
+      }
 
     async sortUserGroups() {
         this.userGroups.sort((a, b) => {

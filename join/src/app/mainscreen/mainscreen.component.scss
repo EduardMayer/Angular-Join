@@ -42,33 +42,38 @@
     z-index: 3;
 }
 
-.sidenav-navigation-container{
+.sidenav-navigation-container {
     display: flex;
     flex-direction: column;
-    gap:15px;
+    gap: 15px;
     width: 100%;
+  
+    .navigation-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 56px;
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(205, 205, 205, 1);
+      cursor: pointer;
+  
 
-    .navigation-box{
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 56px;
-        font-size: 16px;
-        font-weight: 400;
-        color: rgba(205, 205, 205, 1);
-        cursor: pointer;
-    
-        &:hover{
-            background-color: rgba(42, 61, 89, 1);
-        }
+      &:focus,
+      &.focused {
+        background-color: rgba(9, 25, 49, 1);
+        
+      }
 
-        &:focus{
-            background-color: rgba(9, 25, 49, 1);
-        }
-
+      &:not(:focus):not(.focused):hover {
+        background-color: rgba(42, 61, 89, 1);
+      }
     }
+  
     padding-bottom: 243px;
-}
+
+    
+  }
 
 .sidenav-logo{
     display: flex;
@@ -97,8 +102,10 @@
             
         }
 
-        &:focus{
-            background-color: rgba(9, 25, 49, 1);
-        }
     }
+
+    a.focused {
+        background-color: rgba(9, 25, 49, 1);
+      }
 }
+
