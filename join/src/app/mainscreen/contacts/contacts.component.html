@@ -19,7 +19,6 @@
                 </div>
                 <div class="group-underscore"></div>
 
-                
                 @for (user of group.users; track user){
                     <div class="user-box" tabindex="0" (click)="showUserDetails(user, group); setFocusedUserBox('user-box-' + user.id)"
                     [class.focused]="focusedUserBoxId === 'user-box-' + user.id">

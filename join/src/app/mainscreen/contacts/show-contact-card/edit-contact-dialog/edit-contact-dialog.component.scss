@@ -52,19 +52,23 @@ body {
     flex-direction: row;
     width: 745px;
   
-    .contact-picture-box {
+    
+
+    .contact-initial{
       display: flex;
-      background-color: rgb(209, 209, 209);
-      width: 120px;
-      height: 120px;
+      max-height: 120px;
+      min-width: 120px;
+      background-color: black;
+      border-radius: 100%;
+      border: 4px solid white;
+      font-size: 47px;
+      color: white;
       justify-content: center;
       align-items: center;
-      border-radius: 70px;
+      box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
       margin-top: 204px;
       margin-left: 83px;
-      box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
-      border: 3px solid var(--white, #fff);
-    }
+  }
   
     .contact-form-container {
       display: flex;

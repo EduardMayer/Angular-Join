@@ -11,13 +11,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { UserFirebaseService } from '../../../../../services/user-firebase.service';
 import { NotificationService } from '../../../../../services/notification.service';
 import { User } from '../../../../../models/user.class';
+import { NgZone } from '@angular/core';
 
 
 @Component({
   selector: 'app-edit-contact-dialog',
   standalone: true,
   imports: [MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatCheckboxModule,
-    ReactiveFormsModule, MatButtonModule, FormsModule, MatInputModule, CommonModule],
+    ReactiveFormsModule, MatButtonModule, FormsModule, MatInputModule, CommonModule,],
   templateUrl: './edit-contact-dialog.component.html',
   styleUrl: './edit-contact-dialog.component.scss'
 })
@@ -66,9 +67,10 @@ export class EditContactDialogComponent implements OnInit {
 
   onFieldChange(value: any, propertyName: string) {
     if (this.selectedUser) {
-      this.selectedUser[propertyName] = value;
+        this.selectedUser[propertyName] = value;
     }
-  }
+}
+
 
   getErrorMessageName(): string {
     return this.name.hasError('required')
@@ -109,6 +111,7 @@ export class EditContactDialogComponent implements OnInit {
       this.userService.load().then(() => {
         this.userService.groupUsersByInitial();
         this.dialogRef.close();
+        
       });
     }
   }
