@@ -5,12 +5,13 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 
 @Component({
   selector: 'app-mainscreen',
   standalone: true,
-  imports: [LegalNoticeComponent, MatSidenavModule, MatToolbarModule, PrivacyPolicyComponent, ContactsComponent],
+  imports: [LegalNoticeComponent, MatSidenavModule, MatToolbarModule, PrivacyPolicyComponent, ContactsComponent, AddTaskComponent],
   templateUrl: './mainscreen.component.html',
   styleUrl: './mainscreen.component.scss'
 })

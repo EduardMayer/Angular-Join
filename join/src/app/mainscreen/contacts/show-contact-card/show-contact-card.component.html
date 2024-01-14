@@ -2,7 +2,7 @@
 @if(selectedUser){
     <div>
     <div class="contact-details">
-        <div class="contact-initial">{{ selectedUser.firstInitial }}{{ selectedUser.lastInitial }}</div>
+        <div class="contact-initial">{{ getInitials() }}</div>
         <div class="contact-menü-box">
             <div class="contact-name">{{ selectedUser.fullName }}</div>
             <div class="contact-menü-control">

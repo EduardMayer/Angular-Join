@@ -26,7 +26,7 @@ export class EditContactDialogComponent implements OnInit {
 
   @Output() userDeleted = new EventEmitter<void>();
   creatForm: FormGroup;
-  selectedUser: any;
+  selectedUser?: any;
 
 
   name: FormControl = new FormControl('', [
@@ -107,13 +107,26 @@ export class EditContactDialogComponent implements OnInit {
         phone: this.creatForm.value.phone,
       };
   
-      this.userService.update(new User(updatedUser), this.selectedUser.id);
-      this.userService.load().then(() => {
-        this.userService.groupUsersByInitial();
-        this.dialogRef.close();
-        
+      this.userService.update(new User(updatedUser), this.selectedUser.id).then(() => {
+        this.userService.load().then(() => {
+          this.userService.groupUsersByInitial();
+          this.dialogRef.close();
+        });
       });
     }
+  }
+
+  getInitialsFromName(name: string): string {
+    if (name) {
+      const names = name.split(' ').filter(Boolean);
+  
+      if (names.length > 0) {
+        const firstInitial = names[0][0]?.toUpperCase() || '';
+        const lastInitial = names.length > 1 ? names[names.length - 1][0]?.toUpperCase() : '';
+        return firstInitial + lastInitial;
+      }
+    }
+    return '';
   }
 
 

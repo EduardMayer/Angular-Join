@@ -22,7 +22,7 @@
     </div>
 
     <div class="right-contact-container">
-        <div class="contact-initial">{{ selectedUser.firstInitial }}{{ selectedUser.lastInitial }}</div>
+        <div class="contact-initial">{{ getInitialsFromName(selectedUser.fullName) }}</div>
 
         <div class="contact-form-container">
             <div class="contact-close-box">
