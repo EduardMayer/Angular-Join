@@ -21,6 +21,7 @@ export class MainscreenComponent {
   legalNotice = false;
   privacyPolicy = false;
   contacts = false;
+  addTask = true;
   
   constructor(private renderer: Renderer2) {}
 

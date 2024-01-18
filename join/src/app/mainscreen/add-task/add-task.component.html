@@ -1,11 +1,26 @@
+
 <div class="add-task-container">
+    
     <div class="left-container">
         <div class="title-container">Add Task</div>
-
-
         <div class="task-box">
             <div class="left-side-task">
-                <div></div>
+                <div class="input-container">
+                    <mat-label>Title*</mat-label>
+                    <mat-form-field appearance="outline" class="formfield-title-container">
+                      <input type="title" matInput [formControl]="titleFormControl"
+                             placeholder="Enter a title">
+                      @if (titleFormControl.hasError('title') && !titleFormControl.hasError('required')) {
+                        <mat-error>Please enter a Title</mat-error>
+                      }
+                      @if (titleFormControl.hasError('required')) {
+                        <mat-error>Title is <strong>required</strong></mat-error>
+                      }
+                    </mat-form-field>
+                </div>
+                
+                
+                
                 <div></div>
                 <div></div>
             </div>
