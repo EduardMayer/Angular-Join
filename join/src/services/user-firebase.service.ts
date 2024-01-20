@@ -16,7 +16,6 @@ export class UserFirebaseService {
     
     public unsubUsers: any;
 
-
     public finishedLoading: boolean = false;
     
     public loadedUser: User | undefined;

@@ -5,6 +5,7 @@
         <div class="title-container">Add Task</div>
         <div class="task-box">
             <div class="left-side-task">
+                
                 <div class="input-container">
                     <mat-label>Title*</mat-label>
                     <mat-form-field appearance="outline" class="formfield-title-container">
@@ -20,9 +21,33 @@
                 </div>
                 
                 
+          
+                <div class="input-container">
+                  <mat-label>Description</mat-label>
+                  <mat-form-field appearance="outline" class="example-full-width">
+                  <textarea matInput placeholder="Enter a Description"></textarea>
+                </mat-form-field>
+                </div>
+
                 
-                <div></div>
-                <div></div>
+                <div class="input-container">
+                  <mat-label>Assigned to</mat-label>
+                  <mat-form-field appearance="outline"  >
+                    <mat-select [formControl]="user" multiple placeholder="Select contacts to assign">
+                      <mat-select-trigger>
+                        {{user.value?.[0] || ''}}
+                        @if ((user.value?.length || 0) > 1) {
+                          <span class="example-additional-selection">
+                            (+{{(user.value?.length || 0) - 1}} {{user.value?.length === 2 ? 'other' : 'others'}})
+                          </span>
+                        }
+                      </mat-select-trigger>
+                        @for (user of userService.loadedUsers; track user) 
+                        {<mat-option [value]="user.fullName">{{ user.fullName }}</mat-option>}
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                
             </div>
 
             <div></div>
