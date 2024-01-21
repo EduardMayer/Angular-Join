@@ -137,6 +137,30 @@ h1,h2,h3,h4{
     background-color: white;
 }
 
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    display: flex;
+    padding: 0 12px;
+    line-height: var(--mat-standard-button-toggle-height);
+    align-items: center;
+    justify-content: center;
+    gap: 16px 10px;
+    width: 136px;
+    border: 1px solid rgb(158,158,158);
+    
+}
+
+
+.mat-button-toggle-group-appearance-standard .mat-button-toggle-appearance-standard+.mat-button-toggle-appearance-standard {
+    border: none;
+}
+
+.mat-button-toggle-checked {
+    color: white !important;
+}
+
+
+
+
 .notification-container {
   position: absolute;
   top: 0;

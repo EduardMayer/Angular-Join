@@ -47,21 +47,31 @@
                     </mat-select>
                   </mat-form-field>
                 </div>
-                
             </div>
 
-            <div></div>
+            <div class="middle-container"></div>
 
             <div class="right-side-task">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <div class="input-container">
+                  <mat-label>Due date*</mat-label>
+                  <mat-form-field appearance="outline">
+                    <input matInput [matDatepicker]="picker" placeholder="dd/mm/yyyy">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="input-container">
+                  <mat-label>Prio</mat-label>
+                  <mat-button-toggle-group class="prio-button-container" name="selectedButton" aria-label="Favorite Color">
+                    <mat-button-toggle *ngFor="let option of priorityOptions" [value]="option" [ngClass]="getButtonStyle(option)" (click)="selectPriority(option)">
+                      {{ option.label }}
+                      <mat-icon>
+                        <img id="icon" [src]="'assets/img/' + option.icon" alt="Priority Icon">
+                      </mat-icon>
+                    </mat-button-toggle>
+                  </mat-button-toggle-group>
+                </div>
             </div>
-
         </div>
-
-        
-
     </div>
 </div>
