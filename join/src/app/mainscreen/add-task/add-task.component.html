@@ -42,8 +42,21 @@
                           </span>
                         }
                       </mat-select-trigger>
-                        @for (user of userService.loadedUsers; track user) 
-                        {<mat-option [value]="user.fullName">{{ user.fullName }}</mat-option>}
+                      @for (group of userService.userGroups; track group)
+                      {
+                          <div class="user-group">
+                              @for (user of group.users; track user)
+                              {
+                              <mat-option [value]="user.fullName">
+                                <div class="user-box">
+                                <div class="initial-user-box">{{ group.firstInitial }}{{ group.lastInitial }}</div>
+                                <div>{{ user.fullName }}
+                                </div>
+                              </div>
+                                </mat-option>
+                              }
+                          </div>
+                      }
                     </mat-select>
                   </mat-form-field>
                 </div>
@@ -52,6 +65,7 @@
             <div class="middle-container"></div>
 
             <div class="right-side-task">
+
                 <div class="input-container">
                   <mat-label>Due date*</mat-label>
                   <mat-form-field appearance="outline">
@@ -60,6 +74,7 @@
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
                 </div>
+
                 <div class="input-container">
                    
                       <mat-label>Prio</mat-label>
@@ -117,8 +132,18 @@
                         </mat-button-toggle>
                      </mat-button-toggle-group>
                     </div>
-                 </div>
-            </div>
+                </div>
+
+                <div class="input-container">
+                  <mat-label>Category*</mat-label>
+                  <mat-form-field appearance="outline">
+                    <mat-select [formControl]="category" placeholder="Select task category">
+                      @for (category of categoryService.loadedCategory; track category) {
+                        <mat-option [style.background-color]="category.colore" [value]="category.section">{{category.section}}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+                </div>
         </div>
     </div>
 </div>

@@ -168,6 +168,12 @@ h1,h2,h3,h4{
     border: none !important;
 }
 
+.mat-mdc-option.mdc-list-item {
+    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
 
 #urgent.mat-button-toggle-checked {
     background-color: rgba(255, 61, 0, 1)!important;
