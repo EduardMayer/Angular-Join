@@ -1,5 +1,5 @@
 .add-task-container{
-        height: 100vw;
+        height: 100vh;
         display: flex;
         flex-direction: row;
         overflow: hidden;
@@ -12,7 +12,12 @@
 }
 
 .title-container{
-        display: flex
+  display: flex;
+  font-size: 61px;
+  font-weight: 700;
+  line-height: 120%;
+  padding-bottom: 48px;
+
 }
 
 
@@ -21,13 +26,13 @@
         flex-direction: column;
         padding-top: 206px;
         padding-left: 328px;
-        width: 440px;
+        width: 100%;
 }
 
 .left-side-task{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 440px;
 }
 
 .input-container{
@@ -50,20 +55,24 @@
     display: flex;
 }
 
-    
+.right-side-task{
+  display: flex;
+  flex-direction: column;
+  width: 440px;
+}
 
 
-    .create-task-button-container{
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        gap: 35px;
+.create-task-button-container{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 35px;
     
-        .create-task-button:disabled {
-            opacity: 0.5; 
-            cursor:not-allowed;
-          }
-        
+      .create-task-button:disabled {
+      opacity: 0.5; 
+      cursor:not-allowed;
+      }
+            
     
         .clear-button{
             padding: 15px 24px;
@@ -78,27 +87,4 @@
                 background-color: rgb(41, 171, 226);
             }
         }
-    }
-    .prio-button-container {
-        gap: 16px;
-        border: none;
-      
-       
-      }
-      .mat-button-toggle {
-        &.bg-red {
-          background-color: rgba(255, 61, 0, 1); // Set the red color for urgent
-        }
-      
-        &.bg-orange {
-          background-color: rgba(255, 168, 0, 1); // Set the orange color for medium
-        }
-      
-        &.bg-green {
-          background-color: rgba(122, 226, 41, 1); // Set the green color for low
-        }
-
-       
-
-      }
-   
+}

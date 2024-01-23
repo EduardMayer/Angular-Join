@@ -127,8 +127,6 @@ h1,h2,h3,h4{
     gap: 4px;
 }
 
-
-
 .mat-mdc-dialog-container .mdc-dialog__surface {
     border-radius: 30px !important;
 }
@@ -137,27 +135,58 @@ h1,h2,h3,h4{
     background-color: white;
 }
 
+.mat-button-toggle-button {
+    border: 1px solid!important;
+}
+
 .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
     display: flex;
-    padding: 0 12px;
     line-height: var(--mat-standard-button-toggle-height);
     align-items: center;
     justify-content: center;
-    gap: 16px 10px;
-    width: 136px;
-    border: 1px solid rgb(158,158,158);
-    
+    width: 116px;
+    height: 56px;
+    padding: 0px 10px !important;
+    gap: 8px;
 }
-
 
 .mat-button-toggle-group-appearance-standard .mat-button-toggle-appearance-standard+.mat-button-toggle-appearance-standard {
     border: none;
 }
 
-.mat-button-toggle-checked {
+
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard:not([class*=mat-elevation-z]), .mat-button-toggle-group-appearance-standard:not([class*=mat-elevation-z]) {
+    box-shadow: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    
+}
+
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard, .mat-button-toggle-group-appearance-standard {
+    border-radius: none !important;
+    border: none !important;
+}
+
+
+#urgent.mat-button-toggle-checked {
+    background-color: rgba(255, 61, 0, 1)!important;
     color: white !important;
 }
 
+#medium.mat-button-toggle-checked {
+    background-color: rgba(255, 168, 0, 1)!important;
+    color: white !important;
+}
+
+#low.mat-button-toggle-checked {
+    background-color: rgba(122, 226, 41, 1)!important;
+    color: white !important;
+}
+
+.mat-button-toggle-checked .mat-icon svg path {
+    fill: white !important;
+}
 
 
 
@@ -187,7 +216,6 @@ h1,h2,h3,h4{
       font-weight: 500;
       border-radius: 30px;
   }
-
 
 
   //Available animation types

@@ -26,15 +26,7 @@ export class AddTaskComponent implements OnInit {
 
   titleFormControl = new FormControl('', [Validators.required]);
   user = new FormControl('');
-  selectedPriority: any;
-
-  priorityOptions = [
-    { value: 'red', label: 'Urgent', icon: 'urgent.svg' },
-    { value: 'orange', label: 'Medium', icon: 'medium.svg' },
-    { value: 'green', label: 'Low', icon: 'low.svg' },
-  ];
   
-
   constructor(public userService: UserFirebaseService,
     private dateAdapter: DateAdapter<Date>) {
       this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
@@ -46,18 +38,11 @@ export class AddTaskComponent implements OnInit {
   }
 
 
-  getButtonStyle(option: any): any {
-    return {
-      'bg-red': option.value === 'red' && this.selectedPriority === 'red',
-      'bg-orange': option.value === 'orange' && this.selectedPriority === 'orange',
-      'bg-green': option.value === 'green' && this.selectedPriority === 'green',
-    };
-  }
+  
 
-  selectPriority(option: any): void {
-    this.selectedPriority = this.selectedPriority === option.value ? null : option.value;
-  }
+
 }
+
 
 
 
