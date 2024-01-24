@@ -1,0 +1,31 @@
+<div class="category-contaniner">
+  <h2 mat-dialog-title>New Category</h2>
+  <mat-dialog-content>
+      <div class="input-container">
+          <mat-label>Category*</mat-label>
+          <mat-form-field appearance="outline" class="formfield-title-container">
+            <input type="title" matInput [formControl]="categoryFormControl"
+                  placeholder="Enter a new Category">
+            @if (categoryFormControl.hasError('category') && !categoryFormControl.hasError('required')) {
+              <mat-error>Please enter a Category</mat-error>
+            }
+            @if (categoryFormControl.hasError('required')) {
+              <mat-error>Category is <strong>required</strong></mat-error>
+            }
+          </mat-form-field>
+      
+      <mat-label>Color</mat-label>
+      <div class="color-container">
+      <input class="input-color-box" #ignoredInput
+        [style.background]="color"
+        [cpIgnoredElements]="[ignoredButton, ignoredInput]"
+        [(cpToggle)]="toggle"
+        [(colorPicker)]="color"/>
+      <button class="button-color-box" #ignoredButton (click)="toggle=!toggle">Pick Color</button>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <div class="add-categoryr-button-container">
+    <button class="add-button-box" mat-raised-button>Confirm</button>
+  </div>
+</div>

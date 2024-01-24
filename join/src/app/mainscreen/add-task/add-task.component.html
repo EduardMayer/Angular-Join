@@ -138,12 +138,18 @@
                   <mat-label>Category*</mat-label>
                   <mat-form-field appearance="outline">
                     <mat-select [formControl]="category" placeholder="Select task category">
+                      <div class="add-new-category-box" (click)="addNewCategory()">
+                        <mat-option >Add New Category</mat-option>
+                      </div>
                       @for (category of categoryService.loadedCategory; track category) {
-                        <mat-option [style.background-color]="category.colore" [value]="category.section">{{category.section}}</mat-option>
+                        <mat-option class="select-category-box" [style.background-color]="category.colore" [value]="category.section">{{category.section}}</mat-option>
                       }
                     </mat-select>
                   </mat-form-field>
                 </div>
+
+      
+               
         </div>
     </div>
 </div>

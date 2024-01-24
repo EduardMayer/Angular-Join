@@ -1,0 +1,73 @@
+.category-contaniner{
+    padding:  20px 10px;
+
+    h2{
+        font-size: 23px;
+    }
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 20px;
+    .formfield-title-container{
+        display: flex;
+        width: 100%;
+    }
+}
+
+.color-container{
+    display: flex;
+    justify-content: space-around;
+
+
+    .input-color-box{
+        width: 50px;
+        border-radius: 25px;
+    }
+}
+
+.add-categoryr-button-container{
+    display: flex;
+    justify-content: center;
+
+
+.add-button-box{
+    padding: 10px 12px;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(42, 54, 71, 1);
+    border: 1px solid rgba(42, 54, 71, 1);
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    height: 48px;
+    cursor: pointer;
+
+    &:hover{
+        border: 1px solid rgb(41, 171, 226);
+        color: rgb(41, 171, 226);
+        background-color: rgba(255, 255, 255, 1) !important;
+    }
+
+  }
+}
+
+
+
+.button-color-box{
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    background-color: rgba(42, 54, 71, 1);
+    color: rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    height: 30px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: rgb(41, 171, 226);
+    }
+}

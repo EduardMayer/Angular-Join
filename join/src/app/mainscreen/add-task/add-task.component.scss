@@ -111,3 +111,20 @@
             }
         }
 }
+
+.add-new-category-box{
+
+    &:hover{
+        background-color: rgb(42,54,71);
+        
+    }
+}
+
+.select-category-box{
+
+    &:hover{
+        color: white !important;
+    }
+}
+
+

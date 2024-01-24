@@ -14,12 +14,14 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
-
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ShowCategoryDialogComponent } from './show-category-dialog/show-category-dialog/show-category-dialog.component';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @Component({
   selector: 'app-add-task',
   standalone: true,
-  imports: [MatCardModule, CommonModule, MatInputModule, MatButtonModule, MatIconModule, FormsModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatSelectModule, MatListModule, MatDatepickerModule, MatNativeDateModule, MatButtonToggleModule],
+  imports: [MatCardModule, ColorPickerModule, CommonModule, MatInputModule, MatButtonModule, MatIconModule, FormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatSelectModule, MatListModule, MatDatepickerModule, MatNativeDateModule, MatButtonToggleModule],
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.scss'],
 })
@@ -28,13 +30,18 @@ export class AddTaskComponent implements OnInit {
   titleFormControl = new FormControl('', [Validators.required]);
   user = new FormControl('');
   category = new FormControl('');
+  color : string = '';
+  toggle = false;
   
-  constructor(public userService: UserFirebaseService,
-    
+  constructor
+    (
+    public userService: UserFirebaseService,
     private dateAdapter: DateAdapter<Date>,
-    public categoryService: CategoryFirebaseService) {
+    public dialog: MatDialog,
+    public categoryService: CategoryFirebaseService
+    ) 
+    {
     this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
-    
     }
 
   async ngOnInit() {
@@ -46,7 +53,10 @@ export class AddTaskComponent implements OnInit {
 
 
   
-
+  addNewCategory(){
+    const dialogRef = this.dialog.open(ShowCategoryDialogComponent);
+  }
+  
 
 }
 
