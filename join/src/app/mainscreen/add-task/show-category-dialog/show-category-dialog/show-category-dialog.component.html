@@ -2,15 +2,15 @@
   <h2 mat-dialog-title>New Category</h2>
   <mat-dialog-content>
       <div class="input-container">
-          <mat-label>Category*</mat-label>
+          <mat-label>Category</mat-label>
           <mat-form-field appearance="outline" class="formfield-title-container">
             <input type="title" matInput [formControl]="categoryFormControl"
                   placeholder="Enter a new Category">
-            @if (categoryFormControl.hasError('category') && !categoryFormControl.hasError('required')) {
+            @if (categoryFormControl.hasError('required')) {
               <mat-error>Please enter a Category</mat-error>
             }
-            @if (categoryFormControl.hasError('required')) {
-              <mat-error>Category is <strong>required</strong></mat-error>
+            @if (categoryFormControl.hasError('minlength')) {
+              <mat-error>Please enter 3 characters.</mat-error>
             }
           </mat-form-field>
       
@@ -26,6 +26,6 @@
     </div>
   </mat-dialog-content>
   <div class="add-categoryr-button-container">
-    <button class="add-button-box" mat-raised-button>Confirm</button>
+    <button class="add-button-box" [disabled]="isConfirmButtonDisabled()" (click)="onConfirm()">Confirm</button>
   </div>
 </div>

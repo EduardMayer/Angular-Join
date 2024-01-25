@@ -38,6 +38,9 @@ export class SignupComponent {
   @Output() closeSignUpView = new EventEmitter<void>();
   
 
+  initialColor = ['#FF7A00', '#FF5EB3', '#6E52FF','#9327FF', '#00BEE8', '#1FD7C1','#FF745E', '#FFA35E', '#FC71FF','#FFC701', '#0038FF', '#C3FF2B','#FFE62B', '#FF4646', '#FFBB2B'];
+
+
   name: FormControl = new FormControl('', [
     Validators.required,
     Validators.minLength(3),
@@ -136,8 +139,11 @@ export class SignupComponent {
     const name = this.signUpForm.get('name')?.value || '';
     const email = this.signUpForm.get('email')?.value || '';
     const password = this.signUpForm.get('password')?.value || '';
+    const randomColor = this.getRandomColor();
+
     this.userService.registUser.fullName = name;
     this.userService.registUser.mail = email;
+    this.userService.registUser.color = randomColor;
   
     if (this.isFormValid) {
       await this.authService.register(email, password)
@@ -152,7 +158,12 @@ export class SignupComponent {
           this.notificationService.renderNotification(`Fehler bei der Registrierung`, 'error', 'shift-right-in', 3, false);
           console.log(errorCode);
         });
-  
     }
   }
+  
+  getRandomColor(): string {
+    const randomIndex = Math.floor(Math.random() * this.initialColor.length);
+    return this.initialColor[randomIndex];
+  }
 }
+

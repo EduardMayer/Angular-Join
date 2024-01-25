@@ -10,6 +10,9 @@ import { User } from '../models/user.class';
 })
 export class UserFirebaseService {
 
+    public initialColor = ['#FF7A00', '#FF5EB3', '#6E52FF','#9327FF', '#00BEE8', '#1FD7C1','#FF745E', '#FFA35E', '#FC71FF','#FFC701', '#0038FF', '#C3FF2B','#FFE62B', '#FF4646', '#FFBB2B'];
+
+
     public loadedUsers: User[] = [];
 
     public userGroups: { firstInitial: string, lastInitial: string, users: any[] }[] = [];
@@ -23,8 +26,8 @@ export class UserFirebaseService {
     public currentUser: User = new User();
 
     public registUser: User = new User();
-    
-    
+
+
     constructor(private firestore: Firestore) {
     }
 
@@ -91,15 +94,21 @@ export class UserFirebaseService {
             this.registUser.fullName = name;
             this.registUser.mail = email;
             this.registUser.phone = phone;
-    
+            this.registUser.color = this.getRandomColor(); // Setzen Sie die zufällige Farbe hier
+                
             const contactRef = doc(collection(this.firestore, "users"));
             await setDoc(contactRef, this.registUser.toJSON());
             this.load();
-
+    
         } catch (error) {
             console.error("Fehler beim Hinzufügen des Kontakts:", error);
         }
     }
+
+    getRandomColor(): string {
+        const randomIndex = Math.floor(Math.random() * this.initialColor.length);
+        return this.initialColor[randomIndex];
+      }
 
     
     async groupUsersByInitial() {

@@ -32,8 +32,8 @@
                 
                 <div class="input-container">
                   <mat-label>Assigned to</mat-label>
-                  <mat-form-field appearance="outline"  >
-                    <mat-select [formControl]="user" multiple placeholder="Select contacts to assign">
+                  <mat-form-field appearance="outline">
+                    <mat-select [formControl]="user" multiple placeholder="Select contacts to assign" (selectionChange)="onUserSelectionChange($event)">
                       <mat-select-trigger>
                         {{user.value?.[0] || ''}}
                         @if ((user.value?.length || 0) > 1) {
@@ -44,21 +44,21 @@
                       </mat-select-trigger>
                       @for (group of userService.userGroups; track group)
                       {
-                          <div class="user-group">
-                              @for (user of group.users; track user)
-                              {
-                              <mat-option [value]="user.fullName">
-                                <div class="user-box">
-                                <div class="initial-user-box">{{ group.firstInitial }}{{ group.lastInitial }}</div>
-                                <div>{{ user.fullName }}
-                                </div>
+                        <div class="user-group">
+                          @for (user of group.users; track user)
+                          {
+                            <mat-option [value]="user.fullName">
+                              <div class="user-box">
+                                <div class="initial-user-box" [style.background]="getUserColor(user.fullName)" >{{ group.firstInitial }}{{ group.lastInitial }}</div>
+                                <div>{{ user.fullName }}</div>
                               </div>
-                                </mat-option>
-                              }
-                          </div>
+                            </mat-option>
+                          }
+                        </div>
                       }
                     </mat-select>
                   </mat-form-field>
+                  <div class="all-select-initial-container"></div>
                 </div>
             </div>
 
@@ -142,7 +142,7 @@
                         <mat-option >Add New Category</mat-option>
                       </div>
                       @for (category of categoryService.loadedCategory; track category) {
-                        <mat-option class="select-category-box" [style.background-color]="category.colore" [value]="category.section">{{category.section}}</mat-option>
+                        <mat-option class="select-category-box" [style.background-color]="category.color" [value]="category.section">{{category.section}}</mat-option>
                       }
                     </mat-select>
                   </mat-form-field>

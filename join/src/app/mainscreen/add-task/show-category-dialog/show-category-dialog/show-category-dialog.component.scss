@@ -33,24 +33,29 @@
     justify-content: center;
 
 
-.add-button-box{
-    padding: 10px 12px;
-    background-color: rgba(255, 255, 255, 1);
-    color: rgba(42, 54, 71, 1);
-    border: 1px solid rgba(42, 54, 71, 1);
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 700;
-    height: 48px;
-    cursor: pointer;
-
-    &:hover{
-        border: 1px solid rgb(41, 171, 226);
-        color: rgb(41, 171, 226);
-        background-color: rgba(255, 255, 255, 1) !important;
+    .add-button-box {
+        padding: 10px 12px;
+        background-color: rgba(255, 255, 255, 1);
+        color: rgba(42, 54, 71, 1);
+        border: 1px solid rgba(42, 54, 71, 1);
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 700;
+        height: 48px;
+        cursor: pointer;
+    
+        &:not(:disabled):hover {
+            border: 1px solid rgb(41, 171, 226);
+            color: rgb(41, 171, 226);
+            background-color: rgba(255, 255, 255, 1) !important;
+        }
+    
+        &:disabled {
+            opacity: 0.5; 
+            cursor: not-allowed;
+        }
     }
-
-  }
+    
 }
 
 
@@ -70,4 +75,10 @@
     &:hover{
         background-color: rgb(41, 171, 226);
     }
+
+    .sign-up-button:disabled {
+        opacity: 0.5; 
+        cursor:not-allowed;
+      }
+    
 }

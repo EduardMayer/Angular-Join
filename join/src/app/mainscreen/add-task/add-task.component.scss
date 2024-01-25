@@ -64,9 +64,20 @@
         height: 42px;
         justify-content: center;
         align-items: center;
-
     }
+
+   
 }
+
+.all-select-initial-container{
+    display: flex;
+    gap: 7px;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+
     
     
 .middle-container{
@@ -112,13 +123,7 @@
         }
 }
 
-.add-new-category-box{
 
-    &:hover{
-        background-color: rgb(42,54,71);
-        
-    }
-}
 
 .select-category-box{
 

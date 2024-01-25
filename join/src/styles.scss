@@ -194,12 +194,12 @@ h1,h2,h3,h4{
     fill: white !important;
 }
 
-.mat-mdc-option:focus.mdc-list-item, .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
+//.mat-mdc-option:focus.mdc-list-item, .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
     
-    &:hover{
-        color: white;
-    }
-}
+ //   &:hover{
+ //       color: white;
+ //   }
+//}
 
 .mat-mdc-option .mat-pseudo-checkbox-minimal {
     margin-left: 16px;
@@ -234,6 +234,8 @@ h1,h2,h3,h4{
       font-weight: 500;
       border-radius: 30px;
   }
+
+  
 
 
   //Available animation types
