@@ -148,8 +148,20 @@
                   </mat-form-field>
                 </div>
 
-      
-               
+                <div class="input-container">
+                  <mat-label>Subtasks</mat-label>
+                  <mat-form-field appearance="outline" class="formfield-subtasks-container">
+                    <input type="subtasks" placeholder="Add new subtask " matInput [(ngModel)]="inputValue" (ngModelChange)="onInputChange()"(keydown.enter)="addSubtasks()" >
+                       @if(showAddIcon){<mat-icon>add</mat-icon>}
+                       @if(showCloseIcon){<mat-icon (click)="closeSubtasks()" class="subtasks-close-icon">close</mat-icon><div class="subtasks-stroke"></div>}
+                       @if(showCheckIcon){<mat-icon (click)="addSubtasks()"  class="subtasks-check-icon">check</mat-icon>}
+                  </mat-form-field>
+              </div>
+               <div class="subtasks-container">
+                <ul>
+                  @for (subtask of subtasks; track subtask){<li>{{subtask}}</li>}
+                </ul>
+               </div>
         </div>
     </div>
 </div>

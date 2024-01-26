@@ -133,3 +133,14 @@
 }
 
 
+.subtasks-stroke{
+    display: flex;
+    border: 1px solid #D1D1D1;
+    margin: 0px 4px;
+}
+
+
+.subtasks-close-icon,
+.subtasks-check-icon{
+    cursor: pointer;
+}

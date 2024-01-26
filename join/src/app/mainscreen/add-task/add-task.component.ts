@@ -19,6 +19,7 @@ import { ShowCategoryDialogComponent } from './show-category-dialog/show-categor
 import { ColorPickerModule } from 'ngx-color-picker';
 import { MatSelectChange } from '@angular/material/select';
 
+
 @Component({
   selector: 'app-add-task',
   standalone: true,
@@ -31,8 +32,13 @@ export class AddTaskComponent implements OnInit {
   titleFormControl = new FormControl('', [Validators.required]);
   user = new FormControl('');
   category = new FormControl('');
-  color: string = '';
   toggle = false;
+  showAddIcon = true;
+  showCheckIcon = false;
+  showCloseIcon = false;
+  color: string = '';
+  inputValue: string = '';
+  subtasks: string[] = [];
   selectedUsers: string[] = [];
 
   constructor
@@ -80,9 +86,40 @@ export class AddTaskComponent implements OnInit {
   }
   
   getUserColor(userName: string): string {
-    const user = this.userService.loadedUsers.find(u => u.fullName === userName);
+    const user = this.userService.loadedUsers.find(user => user.fullName === userName);
     return user ? user.color : 'initial';
   }
+
+  onInputChange() {
+    
+    if (this.inputValue === '') {
+
+      this.showAddIcon = true;
+      this.showCheckIcon = false;
+      this.showCloseIcon = false;
+    } else {
+
+      this.showAddIcon = false;
+      this.showCheckIcon = true;
+      this.showCloseIcon = true;
+      
+  }
+
+}
+
+closeSubtasks(){
+  this.inputValue = '';
+  this.showAddIcon = true;
+  this.showCheckIcon = false;
+  this.showCloseIcon = false;
+}
+
+addSubtasks() {
+  if (this.inputValue.trim() !== '') {
+    this.subtasks.push(this.inputValue.trim());
+    this.inputValue = '';
+  }
+}
 
 }
 
