@@ -40,6 +40,11 @@ export class AddTaskComponent implements OnInit {
   inputValue: string = '';
   subtasks: string[] = [];
   selectedUsers: string[] = [];
+  editedSubtask: string = "";
+  showSubTask: boolean = true;
+  showEditTask : boolean = false;
+  editedSubtaskIndex: number | undefined;
+
 
   constructor
     (
@@ -107,6 +112,7 @@ export class AddTaskComponent implements OnInit {
 
 }
 
+
 closeSubtasks(){
   this.inputValue = '';
   this.showAddIcon = true;
@@ -119,6 +125,32 @@ addSubtasks() {
     this.subtasks.push(this.inputValue.trim());
     this.inputValue = '';
   }
+}
+
+editSubtask(subtask: string, index: number) {
+  this.showSubTask = false;
+  this.showEditTask = true;
+  this.editedSubtask = subtask;
+  this.editedSubtaskIndex = index; // Variable, um den Index des bearbeiteten Subtasks zu speichern
+}
+
+
+saveEditedSubtask() {
+  if (this.editedSubtaskIndex !== undefined) {
+    // Hier können Sie die Logik zum Speichern des bearbeiteten Subtasks unter Verwendung des Index hinzufügen
+    console.log("Saved: ", this.editedSubtask);
+    this.subtasks[this.editedSubtaskIndex] = this.editedSubtask;
+    this.showSubTask = true;
+    this.showEditTask = false;
+    this.editedSubtask = '';
+    this.editedSubtaskIndex = undefined; // Zurücksetzen des bearbeiteten Subtask-Index
+  }
+}
+
+deleteTask(subtask: string, i: number) {
+  this.subtasks.splice(i, 1);
+  this.editedSubtask = '';
+  this.editedSubtaskIndex = undefined;
 }
 
 }

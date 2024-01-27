@@ -132,6 +132,45 @@
     }
 }
 
+.subtasks-container{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+ 
+}
+
+
+.subtask-total-box {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 16px;
+
+
+  }
+  
+  .subtask-left-box {
+    display: flex;
+    gap: 5px;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  
+  .subtask-right-box {
+    display: flex;
+    
+    
+  }
+  
+  .subtask-total-box:hover .subtask-right-box {
+    visibility: visible;
+    opacity: 1;
+    
+  }
+
+
+
+   
+
 
 .subtasks-stroke{
     display: flex;
@@ -141,6 +180,11 @@
 
 
 .subtasks-close-icon,
-.subtasks-check-icon{
+.subtasks-check-icon,
+.subtask-change-icon,
+.subtask-delete-icon,
+.subtask-text-box,
+.subtask-box{
     cursor: pointer;
 }
+
