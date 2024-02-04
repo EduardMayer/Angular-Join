@@ -1,4 +1,6 @@
 export class Task {
+    id: string;
+    status: string; 
     title: string;
     description: string;
     assigned: string;
@@ -8,6 +10,8 @@ export class Task {
     subtasks: string[];
 
     constructor(obj?: any) {
+        this.id = obj && obj.id || "";
+        this.status = obj && obj.status || "";
         this.title = obj && obj.title || "";
         this.description = obj && obj.description || "";
         this.assigned = obj && obj.assigned || "";
@@ -19,6 +23,8 @@ export class Task {
 
     toJSON() {
         return {
+            id: this.id,
+            status: this.status,
             title: this.title, 
             description: this.description,
             assigned: this.assigned,

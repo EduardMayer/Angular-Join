@@ -188,6 +188,7 @@ export class AddTaskComponent implements OnInit {
 
   async addNewTask() {
     const title = this.titleInput;
+    const status =  "todo"; 
     const description = this.descriptionInput;
     const category = this.selectCategory;
     const dueDate = this.selectedDate;
@@ -195,7 +196,7 @@ export class AddTaskComponent implements OnInit {
     const subtasks = this.subtasks || [];
     const assignedTo = this.user.value || "";
 
-    await this.taskService.addNewTask(title, description, assignedTo, dueDate, priority, category, subtasks);
+    await this.taskService.addNewTask(title,  status, description, assignedTo, dueDate, priority, category, subtasks);
     this.clearTask();
   }
 

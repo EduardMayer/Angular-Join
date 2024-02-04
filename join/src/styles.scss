@@ -133,6 +133,13 @@ h1,h2,h3,h4{
 
 .mat-mdc-text-field-wrapper {
     background-color: white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.mat-mdc-text-field-wrapper {
+    min-width: 312px !important;
 }
 
 .mat-button-toggle-button {
