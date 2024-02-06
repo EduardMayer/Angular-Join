@@ -10,6 +10,7 @@ import { Category } from '../models/category.class';
 })
 export class CategoryFirebaseService {
 
+
     public loadedCategory: Category[] = [];
     
     public unsubCategory: any;

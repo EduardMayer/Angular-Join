@@ -39,6 +39,7 @@ export class AddTaskComponent implements OnInit {
   selectedDate: string = '';
   selectedPrio: string = "";
   selectCategory: string = '';
+  selectedCategoryColor: string = '';
   color: string = '';
   inputValue: string = '';
   subtasks: string[] = [];
@@ -97,6 +98,8 @@ export class AddTaskComponent implements OnInit {
         .join(' ');
     }
   }
+
+  
 
   getUserColor(userName: string): string {
     const user = this.userService.loadedUsers.find(user => user.fullName === userName);
@@ -173,10 +176,15 @@ export class AddTaskComponent implements OnInit {
     this.selectedPrio = event.value;
   }
 
-  onCategoryChange(event: MatSelectChange): void {
-    this.selectCategory = event.value;
-    console.log('Selected Category:', this.selectCategory);
-
+  onCategorySelectionChange() {
+    const selectedCategory = this.categoryService.loadedCategory.find(category => category.section === this.selectCategory);
+    if (selectedCategory) {
+      this.selectedCategoryColor = selectedCategory.color;
+      console.log("Selected Category Color:", this.selectedCategoryColor);
+    } else {
+      this.selectedCategoryColor = '';
+      console.log("Category not found");
+    }
   }
 
   clearInitialContainer() {
@@ -188,17 +196,26 @@ export class AddTaskComponent implements OnInit {
 
   async addNewTask() {
     const title = this.titleInput;
-    const status =  "todo"; 
+    const status = "todo";
     const description = this.descriptionInput;
+    const categoryColor = this.selectedCategoryColor;
     const category = this.selectCategory;
     const dueDate = this.selectedDate;
     const priority = this.selectedPrio;
     const subtasks = this.subtasks || [];
-    const assignedTo = this.user.value || "";
+    const assignedTo = this.selectedUsers.join(', ');
+    const initials = this.selectedUsers.map(user => {
+        const [firstNameInitial, lastNameInitial] = user.split(' ').map(name => name?.[0] || '');
+        return `${firstNameInitial}${lastNameInitial}`;
+    });
 
-    await this.taskService.addNewTask(title,  status, description, assignedTo, dueDate, priority, category, subtasks);
+    const initialColors = this.selectedUsers.map(user => this.getUserColor(user));
+
+    await this.taskService.addNewTask(title, categoryColor, status, description, assignedTo, initials, initialColors, dueDate, priority, category, subtasks);
+
     this.clearTask();
-  }
+}
+
 
   clearTask() {
     this.titleInput = '';

@@ -84,11 +84,9 @@
   }
   
   .placeholder{
-    border: 1px dashed #A8A8A8;
-    height: 48px;
+    
+    height: 100%;
     min-width: 252px;
-    background: #E7E7E7;
-    border-radius: 10px;
     display: block;
   }
   
@@ -98,6 +96,7 @@
     background-color: rgba(0, 0, 0, 0.08);
     display: flex;
     min-width: 252px;
+    max-width: 252px;
     max-height: 688px;
     flex-direction: column;
     align-items: flex-start;
@@ -105,9 +104,57 @@
     box-sizing: border-box;
     cursor: grab;
     background: white;
-    border-radius: 10px;
+    border-radius: 24px;
+    margin-bottom: 16px;
+  }
+
+
+  .card-category{
+    color: white;
+    padding: 4px 16px;
+    border-radius: 8px;
+    font-size: 16px;
   }
   
+  .card-title{
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .card-description {
+    display: flex;
+    font-size: 16px;
+    color: rgba(168, 168, 168, 1);
+   
+  }
+
+  .lower-task-card{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .card-initials-container {
+    display: flex;
+    position: relative;
+    left: 10px;
+  }
+  
+  .card-initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: 400;
+    width: 32px;
+    height: 32px;
+    border-radius: 45px;
+    margin-left: -10px;
+  }
+
+
   .cdk-drag-preview {
     box-sizing: border-box;
     

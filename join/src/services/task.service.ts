@@ -9,7 +9,7 @@ import { Task } from '../models/task.class';
 export class TaskFirebaseService {
 
   
-  public tasks: Task[] = []; // Änderung hier: todoTasks zu tasks
+  public tasks: Task[] = []; 
   public unsubTask: any;
   public finishedLoading = false;
   public addTask = new Task();
@@ -21,9 +21,7 @@ export class TaskFirebaseService {
     try {
       await this.loadTasks();
       this.finishedLoading = true;
-
       console.log("Data loaded successfully!");
-      console.log(this.tasks); // Änderung hier: todoTasks zu tasks
     } catch (error) {
       console.error('Error during query:', error);
     }
@@ -36,7 +34,6 @@ export class TaskFirebaseService {
 
   private async loadTasksFromSnapshot(query: Query<unknown, DocumentData>, taskArray: Task[]) {
     const snapshot = await getDocs(query);
-
     snapshot.forEach((doc) => {
       const task = new Task(doc.data());
       taskArray.push(task);
@@ -45,12 +42,15 @@ export class TaskFirebaseService {
 
 
 
-  async addNewTask(title: string, status: string, description: string, assigned: string, date: string, prio: string, category: string, subtasks: string[]) {
+  async addNewTask(title: string, categoryColor: string, status: string, description: string, assigned: string, initials: string[], initialColors: string[], date: string, prio: string, category: string, subtasks: string[]) {
     try {
         this.addTask.title = title;
+        this.addTask.categoryColor = categoryColor;
         this.addTask.status = status;
         this.addTask.description = description;
         this.addTask.assigned = assigned;
+        this.addTask.initials = initials; 
+        this.addTask.initialColors = initialColors; 
         this.addTask.date = date;
         this.addTask.prio = prio;
         this.addTask.category = category;

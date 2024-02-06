@@ -224,6 +224,7 @@
             <mat-select
               [formControl]="category"
               [(ngModel)]="selectCategory"
+              (selectionChange)="onCategorySelectionChange()"
               placeholder="Select task category"
             >
               <div class="add-new-category-box" (click)="addNewCategory()">

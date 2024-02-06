@@ -5,14 +5,17 @@ import {MatInputModule} from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UserFirebaseService } from '../../../services/user-firebase.service';
 import { TaskFirebaseService } from '../../../services/task.service';
+import { CategoryFirebaseService } from '../../../services/category.service';
 import {CdkDragDrop, moveItemInArray, transferArrayItem,CdkDrag,CdkDropList, } from '@angular/cdk/drag-drop';
 import { NgFor } from '@angular/common';
 import { Task } from '../../../models/task.class';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [MatCardModule, MatFormFieldModule, MatInputModule, CdkDropList, CdkDrag],
+  imports: [MatCardModule, MatFormFieldModule, MatInputModule, CdkDropList, CdkDrag, MatProgressBarModule, ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss'
 })
@@ -23,16 +26,19 @@ export class BoardComponent {
   feedback: Task[] = [];
   done: Task[] = [];
 
+
   async ngOnInit(){
     await this.userService.load();
     await this.userService.groupUsersByInitial();
     await this.taskService.load();
+    await this.categoryService.load();
     this.initializeTaskArrays();
     }
 
     constructor(
       public userService: UserFirebaseService,
       public taskService: TaskFirebaseService,
+      public categoryService : CategoryFirebaseService,
       public dialog: MatDialog,
 
       
@@ -43,6 +49,11 @@ export class BoardComponent {
       this.progress = this.taskService.tasks.filter(task => task.status === 'progress');
       this.feedback = this.taskService.tasks.filter(task => task.status === 'feedback');
       this.done = this.taskService.tasks.filter(task => task.status === 'done');
+    }
+
+    getUserColor(userName: string): string {
+      const user = this.userService.loadedUsers.find(user => user.fullName === userName);
+      return user ? user.color : 'initial';
     }
 
 

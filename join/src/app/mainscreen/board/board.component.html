@@ -85,21 +85,32 @@
           <div class="example-container">
             <h2>Done</h2>
           
-            <div
+            <divy
               cdkDropList
               #doneList="cdkDropList"
               [cdkDropListData]="done"
               [cdkDropListConnectedTo]="[todoList, progressList, feedbackList]"
               class="placeholder"
               (cdkDropListDropped)="drop($event, 'done')">
-              @for (task of done; track done) {
+              @for (task of done; let i = $index; track done) {
                 <div class="task-card" cdkDrag>
-                  <div class="card-category" [style.background]="">{{task.category}}</div>
-                  {{task.title}}
+                  <div class="card-category" [style.background]="task.categoryColor">{{task.category}}</div>
+                  <div class="card-title">{{task.title}}</div>
+                  <div class="card-description" id="description"><p>{{task.description}}</p></div>
+                  <mat-progress-bar mode="determinate" value="50"></mat-progress-bar>
+                  <div class="lower-task-card">
+                    <div class="card-initials-container">
+                    @for (initials of task.initials; let i = $index; track initials){
+                        <div class="card-initials" [style.background]="task.initialColors[i]">{{initials}}</div>
+                    }
+                    </div>
+                    <div>{{task.prio}}</div>
+                  </div>
+                 
                 </div>
               }
               
-            </div>
+            </divy>
           </div>
           
           
