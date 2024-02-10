@@ -30,91 +30,122 @@
 
     <div class="bottom-container">
         
-        <div class="example-container">
-            <h2>To do</h2>
-          
-            <div
-              cdkDropList
-              #todoList="cdkDropList"
-              [cdkDropListData]="todo"
-              [cdkDropListConnectedTo]="[progressList, feedbackList, doneList]"
-              class="placeholder"
-              (cdkDropListDropped)="drop($event, 'todo')">
-              @for (task of todo; track todo) {
-                <div class="task-card" cdkDrag>{{task.title}}</div>
-              }
-            </div>
-          </div>
-
-          
-          <div class="example-container">
-            <h2>In progress</h2>
-          
-            <div
-              cdkDropList
-              #progressList="cdkDropList"
-              [cdkDropListData]="progress"
-              [cdkDropListConnectedTo]="[todoList, feedbackList, doneList]"
-              class="placeholder"
-              (cdkDropListDropped)="drop($event, 'progress')">
-              @for (task of progress; track progress) {
-               
-                <div class="task-card" cdkDrag>{{task.title}}</div>
-              
-              }
-            </div>
-          </div>
-
-          <div class="example-container">
-            <h2>Await feedback</h2>
-          
-            <div
-              cdkDropList
-              #feedbackList="cdkDropList"
-              [cdkDropListData]="feedback"
-              [cdkDropListConnectedTo]="[todoList, progressList, doneList]"
-              class="placeholder"
-              (cdkDropListDropped)="drop($event, 'feedback')">
-              @for (task of feedback; track feedback) {
-                <div class="task-card" cdkDrag>{{task.title}}</div>
-              }
-            </div>
-          </div>
-
-
-          <div class="example-container">
-            <h2>Done</h2>
-          
-            <divy
-              cdkDropList
-              #doneList="cdkDropList"
-              [cdkDropListData]="done"
-              [cdkDropListConnectedTo]="[todoList, progressList, feedbackList]"
-              class="placeholder"
-              (cdkDropListDropped)="drop($event, 'done')">
-              @for (task of done; let i = $index; track done) {
-                <div class="task-card" cdkDrag>
-                  <div class="card-category" [style.background]="task.categoryColor">{{task.category}}</div>
-                  <div class="card-title">{{task.title}}</div>
-                  <div class="card-description" id="description"><p>{{task.description}}</p></div>
-                  <mat-progress-bar mode="determinate" value="50"></mat-progress-bar>
-                  <div class="lower-task-card">
-                    <div class="card-initials-container">
-                    @for (initials of task.initials; let i = $index; track initials){
-                        <div class="card-initials" [style.background]="task.initialColors[i]">{{initials}}</div>
-                    }
+      <div class="example-container">
+        <h2>To do</h2>
+      
+        <div 
+            cdkDropList
+            #todoList="cdkDropList"
+            [cdkDropListData]="todo"
+            [cdkDropListConnectedTo]="[progressList, feedbackList, doneList]"
+            class="placeholder"
+            (cdkDropListDropped)="drop($event, 'todo')">
+            @for (task of todo; let i = $index; track todo)  {
+                <div (click)="openCard(task); getCardId(task.id)" class="task-card" cdkDrag >
+                    <div class="card-category" [style.background]="task.categoryColor">{{task.category}}</div>
+                    <div class="card-title">{{task.title}}</div>
+                    <div class="card-description" id="description">{{task.description}}</div>
+                    <mat-progress-bar mode="determinate" value="50"></mat-progress-bar>
+                    <div class="lower-task-card">
+                        <div class="card-initials-container">
+                            @for (initials of task.initials; let j = $index; track initials) {
+                                <div class="card-initials" [style.background]="task.initialColors[j]">{{initials}}</div>
+                            }
+                        </div>
+                        <div><img src="/assets/img/{{task.prio}}.svg" alt="{{task.prio}}"></div>
                     </div>
-                    <div>{{task.prio}}</div>
-                  </div>
-                 
                 </div>
-              }
-              
-            </divy>
-          </div>
-          
-          
-          
+            }
+        </div>
+    </div>
+    
+    <div class="example-container">
+        <h2>In progress</h2>
+      
+        <div 
+            cdkDropList
+            #progressList="cdkDropList"
+            [cdkDropListData]="progress"
+            [cdkDropListConnectedTo]="[todoList, feedbackList, doneList]"
+            class="placeholder"
+            (cdkDropListDropped)="drop($event, 'progress')">
+            @for (task of progress; let i = $index; track progress) {
+                <div (click)="openCard(task); getCardId(task.id)" class="task-card" cdkDrag>
+                    <div class="card-category" [style.background]="task.categoryColor">{{task.category}}</div>
+                    <div class="card-title">{{task.title}}</div>
+                    <div class="card-description" id="description">{{task.description}}</div>
+                    <mat-progress-bar mode="determinate" value="50"></mat-progress-bar>
+                    <div class="lower-task-card">
+                        <div class="card-initials-container">
+                            @for (initials of task.initials; let j = $index; track initials) {
+                                <div class="card-initials" [style.background]="task.initialColors[j]">{{initials}}</div>
+                            }
+                        </div>
+                        <div><img src="/assets/img/{{task.prio}}.svg" alt="{{task.prio}}"></div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    
+    <div class="example-container">
+        <h2>Await feedback</h2>
+      
+        <div 
+            cdkDropList
+            #feedbackList="cdkDropList"
+            [cdkDropListData]="feedback"
+            [cdkDropListConnectedTo]="[todoList, progressList, doneList]"
+            class="placeholder"
+            (cdkDropListDropped)="drop($event, 'feedback')">
+            @for (task of feedback; let i = $index; track feedback) {
+                <div (click)="openCard(task); getCardId(task.id)" class="task-card" cdkDrag>
+                    <div class="card-category" [style.background]="task.categoryColor">{{task.category}}</div>
+                    <div class="card-title">{{task.title}}</div>
+                    <div class="card-description" id="description">{{task.description}}</div>
+                    <mat-progress-bar mode="determinate" value="50"></mat-progress-bar>
+                    <div class="lower-task-card">
+                        <div class="card-initials-container">
+                            @for (initials of task.initials; let j = $index; track initials) {
+                                <div class="card-initials" [style.background]="task.initialColors[j]">{{initials}}</div>
+                            }
+                        </div>
+                        <div><img src="/assets/img/{{task.prio}}.svg" alt="{{task.prio}}"></div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    
+    <div class="example-container">
+        <h2>Done</h2>
+      
+        <div 
+            cdkDropList
+            #doneList="cdkDropList"
+            [cdkDropListData]="done"
+            [cdkDropListConnectedTo]="[todoList, progressList, feedbackList]"
+            class="placeholder"
+            (cdkDropListDropped)="drop($event, 'done')">
+            @for (task of done; let i = $index; track done) {
+                <div (click)="openCard(task); getCardId(task.id)" class="task-card" cdkDrag>
+                    <div class="card-category" [style.background]="task.categoryColor">{{task.category}}</div>
+                    <div class="card-title">{{task.title}}</div>
+                    <div class="card-description" id="description">{{task.description}}</div>
+                    <mat-progress-bar mode="determinate" value="50"></mat-progress-bar>
+                    <div class="lower-task-card">
+                        <div class="card-initials-container">
+                            @for (initials of task.initials; let j = $index; track initials) {
+                                <div class="card-initials" [style.background]="task.initialColors[j]">{{initials}}</div>
+                            }
+                        </div>
+                        <div><img src="/assets/img/{{task.prio}}.svg" alt="{{task.prio}}"></div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    
 
     </div>
 </div>

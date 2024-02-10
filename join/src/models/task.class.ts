@@ -35,8 +35,8 @@ export class Task {
             categoryColor: this.categoryColor,
             description: this.description,
             assigned: this.assigned,
-            initials: this.initials, // Initialen serialisieren
-            initialColors: this.initialColors, // Farben serialisieren
+            initials: this.initials, 
+            initialColors: this.initialColors,
             date: this.date,
             prio: this.prio,
             category: this.category,

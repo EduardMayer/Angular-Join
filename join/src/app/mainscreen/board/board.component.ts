@@ -1,15 +1,16 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { UserFirebaseService } from '../../../services/user-firebase.service';
 import { TaskFirebaseService } from '../../../services/task.service';
 import { CategoryFirebaseService } from '../../../services/category.service';
-import {CdkDragDrop, moveItemInArray, transferArrayItem,CdkDrag,CdkDropList, } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem,CdkDrag,CdkDropList } from '@angular/cdk/drag-drop';
 import { NgFor } from '@angular/common';
 import { Task } from '../../../models/task.class';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { TaskCardDialogComponent } from './task-card-dialog/task-card-dialog.component';
 
 
 @Component({
@@ -21,11 +22,14 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 })
 export class BoardComponent {
 
+  @Input() task: any;
+
   todo: Task[] = [];
   progress: Task[] = [];
   feedback: Task[] = [];
   done: Task[] = [];
-
+  selectedTask = new Task();
+  
 
   async ngOnInit(){
     await this.userService.load();
@@ -40,8 +44,6 @@ export class BoardComponent {
       public taskService: TaskFirebaseService,
       public categoryService : CategoryFirebaseService,
       public dialog: MatDialog,
-
-      
     ) {}
 
     private initializeTaskArrays() {
@@ -78,8 +80,27 @@ export class BoardComponent {
       }
     }
   }
+
+  
+  openCard(task: Task): void {
+    const dialogRef = this.dialog.open(TaskCardDialogComponent, {
+      data: task
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+
+  getCardId(cardId: string) {
+    console.log("Clicked card ID:", cardId);
+  }
 }
- 
-    
+
+
+
+
+
 
 

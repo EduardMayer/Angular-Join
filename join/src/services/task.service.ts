@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
-import { collection, doc, getDocs, getDoc, setDoc, addDoc, deleteDoc, DocumentData, Query, query, updateDoc } from "firebase/firestore";
+import { doc, getDoc, addDoc, DocumentData, collection, query, getDocs, deleteDoc, updateDoc } from "firebase/firestore";
 import { Task } from '../models/task.class';
 
 @Injectable({
@@ -8,11 +8,8 @@ import { Task } from '../models/task.class';
 })
 export class TaskFirebaseService {
 
-  
   public tasks: Task[] = []; 
-  public unsubTask: any;
   public finishedLoading = false;
-  public addTask = new Task();
 
   constructor(private firestore: Firestore) {
   }
@@ -32,7 +29,7 @@ export class TaskFirebaseService {
     await this.loadTasksFromSnapshot(todo, this.tasks); 
   }
 
-  private async loadTasksFromSnapshot(query: Query<unknown, DocumentData>, taskArray: Task[]) {
+  private async loadTasksFromSnapshot(query: any, taskArray: Task[]) {
     const snapshot = await getDocs(query);
     snapshot.forEach((doc) => {
       const task = new Task(doc.data());
@@ -40,40 +37,39 @@ export class TaskFirebaseService {
     });
   }
 
-
-
   async addNewTask(title: string, categoryColor: string, status: string, description: string, assigned: string, initials: string[], initialColors: string[], date: string, prio: string, category: string, subtasks: string[]) {
     try {
-        this.addTask.title = title;
-        this.addTask.categoryColor = categoryColor;
-        this.addTask.status = status;
-        this.addTask.description = description;
-        this.addTask.assigned = assigned;
-        this.addTask.initials = initials; 
-        this.addTask.initialColors = initialColors; 
-        this.addTask.date = date;
-        this.addTask.prio = prio;
-        this.addTask.category = category;
-        this.addTask.subtasks = subtasks;
+        const newTaskData = {
+            title,
+            categoryColor,
+            status,
+            description,
+            assigned,
+            initials,
+            initialColors,
+            date,
+            prio,
+            category,
+            subtasks
+        };
 
-        const docRef = await addDoc(collection(this.firestore, "tasks"), this.addTask.toJSON());
-        this.addTask.id = docRef.id;
-        await updateDoc(doc(docRef.parent, this.addTask.id), this.addTask.toJSON());
+        const docRef = await addDoc(collection(this.firestore, "tasks"), newTaskData);
+        const docSnap = await getDoc(docRef);
+        let newTask = new Task(docSnap.data());
+        newTask.id = docSnap.id;
 
+        await updateDoc(doc(docRef.parent, newTask.id), newTask.toJSON());
     } catch (error) {
         console.error("Error adding the task:", error);
     }
-}
-
-
-async update(task: Task, status: string) {
-  if (status !== "") {
-    const docInstance = doc(this.firestore, 'tasks', task.id);  
-    await updateDoc(docInstance, { status });
   }
-}
 
-
+  async update(task: Task, status: string) {
+    if (status !== "") {
+      const docInstance = doc(this.firestore, 'tasks', task.id);  
+      await updateDoc(docInstance, { status });
+    }
+  }
 
   async deleteCategory(category: string) {
     try {
@@ -81,6 +77,24 @@ async update(task: Task, status: string) {
       await deleteDoc(docRef);
     } catch (error) {
       console.error('Error deleting category:', error);
+    }
+  }
+
+  async getTaskByID(ID: string) {
+    let task = this.tasks.find(task => task.id === ID);
+    
+    if (task) {
+      return task;
+    } else {
+      if (ID !== "") {
+        const docRef = doc(this.firestore, "tasks", ID);
+        const docSnap = await getDoc(docRef);
+        let task = new Task(docSnap.data());
+        task.id = docSnap.id;
+        return task;
+      } else {
+        return new Task();
+      }
     }
   }
 }

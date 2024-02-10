@@ -1,0 +1,12 @@
+<mat-card>
+    <mat-card-content>
+      <div class="task-card-container">
+        <div class="card-title"><div [style.background]="data.categoryColor" class="card-title-text">{{ data.title }}</div></div>
+        <div class="card-description">{{ data.description }}</div>
+      <div>{{ data.date}}</div>
+        <div>{{ data.prio}}</div>
+        <div>{{ data.assigned}}</div>
+        <div>{{ data.subtasks}}</div>
+      </div>
+    </mat-card-content>
+  </mat-card>

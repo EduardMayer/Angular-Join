@@ -31,7 +31,7 @@ export class ContactsComponent implements OnInit {
   ) {}
 
 
-  openAddUser() {
+  openAddUser(): void {
     this.dialog.open(AddContactDialogComponent);
   }
 
