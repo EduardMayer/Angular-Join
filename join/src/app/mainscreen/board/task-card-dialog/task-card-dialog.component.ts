@@ -19,7 +19,8 @@ import { DatePipe } from '@angular/common';
   styleUrl: './task-card-dialog.component.scss'
 })
 export class TaskCardDialogComponent {
-  formattedDate: string = "";
+
+  word!: string;
 
     constructor(
       public userService: UserFirebaseService,
@@ -35,4 +36,23 @@ export class TaskCardDialogComponent {
       this.userService.load();
       this.taskService.load();
     }
+
+    capitalizeFirstLetter(word: string): string {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }
+
+    processAssignedString(inputString: string): string {
+      inputString = inputString.trim();
+      let names = inputString.split(',').map(function(name) {
+          return name.trim();
+      });
+  
+      let result = '';
+  
+      names.forEach(function(name) {
+          result += "<span>" + name + "</span>";
+      });
+  
+      return result;
+  }
 }

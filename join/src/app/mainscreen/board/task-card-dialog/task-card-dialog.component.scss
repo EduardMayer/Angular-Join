@@ -32,3 +32,33 @@
     
 
 }
+
+
+.assigned-container{
+    display: flex;
+    gap: 16px;
+
+    .card-initials-container{
+        display: flex;
+        flex-direction: column;
+
+        .card-initials{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: 400;
+            width: 32px;
+            height: 32px;
+            border-radius: 45px;
+            }
+
+    }
+
+    
+    .card-assigned{
+        display: flex;
+        flex-direction: column;
+    }
+}

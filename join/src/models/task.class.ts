@@ -5,8 +5,8 @@ export class Task {
     categoryColor: string;
     description: string;
     assigned: string;
-    initials: string[]; // Initialen hinzufügen
-    initialColors: string[]; // Farben hinzufügen
+    initials: string[]; 
+    initialColors: string[];
     date: string;
     prio: string;
     category: string;

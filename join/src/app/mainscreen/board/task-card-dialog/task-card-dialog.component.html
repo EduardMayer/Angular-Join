@@ -3,9 +3,26 @@
       <div class="task-card-container">
         <div class="card-title"><div [style.background]="data.categoryColor" class="card-title-text">{{ data.title }}</div></div>
         <div class="card-description">{{ data.description }}</div>
-      <div>{{ data.date}}</div>
-        <div>{{ data.prio}}</div>
-        <div>{{ data.assigned}}</div>
+        <div class="card-date">
+          <span>Due Date:</span><div>{{ formatDateService.formatTimestampToDMY(data.date) }}</div>
+        </div>
+        <div class="card-priority">
+          <div>
+            <img src="/assets/img/{{data.prio}}.svg">
+          </div>
+          <div>
+            {{capitalizeFirstLetter(data.prio)}}
+          </div>
+         </div>
+         <div class="assigned-container">
+              <div class="card-initials-container">
+                  @for (initials of data.initials; let i = $index; track initials) {
+                    <div class="card-initials" [style.background]="data.initialColors[i]">{{initials}}</div>
+                  }
+              </div>
+              <div class="card-assigned" [innerHTML]="processAssignedString(data.assigned)"></div>
+         </div>
+   
         <div>{{ data.subtasks}}</div>
       </div>
     </mat-card-content>
