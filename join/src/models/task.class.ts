@@ -4,7 +4,7 @@ export class Task {
     title: string;
     categoryColor: string;
     description: string;
-    assigned: string;
+    assigned: string [];
     initials: string[]; 
     initialColors: string[];
     date: string;
@@ -18,7 +18,7 @@ export class Task {
         this.title = obj && obj.title || "";
         this.categoryColor = obj && obj.categoryColor || "";
         this.description = obj && obj.description || "";
-        this.assigned = obj && obj.assigned || "";
+        this.assigned = obj && obj.assigned || [];
         this.initials = obj && obj.initials || []; 
         this.initialColors = obj && obj.initialColors || []; 
         this.date = obj && obj.date || "";

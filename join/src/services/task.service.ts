@@ -37,7 +37,7 @@ export class TaskFirebaseService {
     });
   }
 
-  async addNewTask(title: string, categoryColor: string, status: string, description: string, assigned: string, initials: string[], initialColors: string[], date: string, prio: string, category: string, subtasks: string[]) {
+  async addNewTask(title: string, categoryColor: string, status: string, description: string, assigned: string[], initials: string[], initialColors: string[], date: string, prio: string, category: string, subtasks: string[]) {
     try {
         const newTaskData = {
             title,

@@ -203,7 +203,7 @@ export class AddTaskComponent implements OnInit {
     const dueDate = this.selectedDate;
     const priority = this.selectedPrio;
     const subtasks = this.subtasks || [];
-    const assignedTo = this.selectedUsers.join(', ');
+    const assignedTo = this.selectedUsers;
     const initials = this.selectedUsers.map(user => {
         const [firstNameInitial, lastNameInitial] = user.split(' ').map(name => name?.[0] || '');
         return `${firstNameInitial}${lastNameInitial}`;

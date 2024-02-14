@@ -4,13 +4,22 @@
     width: 396px;
     border-radius: 30px;
     padding: 32px 24px;
-    gap: 16px;
+    gap: 32px;
+}
+
+.other-color-box{
+    color: rgba(66, 82, 110, 1);
+    font-size: 20px;
+    font-weight: 400;
 }
 
 
 .card-title{
     display: flex;
-   
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 42.2px;
+
 }
 
 
@@ -21,22 +30,49 @@
     color: white;
     font-size: 16px;
     font-weight: 400;
+    width: fit-content;
 }
 
 
 .card-description{
     word-wrap: break-word;
-    font-size: 36px;
-    font-weight: 700;
-    line-height: 42.2px;
-    
+    font-size: 20px;
+    font-weight: 400;
+}
 
+.card-date{
+    display: flex;
+    gap: 25px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+
+
+
+.card-priority-container{
+    display: flex;
+    font-size: 20px;
+    font-weight: 400;
+    gap:45px
+}
+
+.priority-box{
+    display: flex;
+    align-items: center;
+    gap: 10px;    
 }
 
 
 .assigned-container{
     display: flex;
+    flex-direction: column;
     gap: 16px;
+
+    .assigned-description{
+        font-size: 20px;
+        font-weight: 400;
+    }
 
     .card-initials-container{
         display: flex;
@@ -56,9 +92,18 @@
 
     }
 
-    
-    .card-assigned{
+    .card-assigned-initials-box{
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding: 7px 16px;
+
+        .card-assigned{
+            font-size: 19px;
+            font-weight: 400;
+        }
+        
     }
+
+
 }

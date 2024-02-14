@@ -1,27 +1,34 @@
 <mat-card>
     <mat-card-content>
       <div class="task-card-container">
-        <div class="card-title"><div [style.background]="data.categoryColor" class="card-title-text">{{ data.title }}</div></div>
+        <div class="card-category"><div [style.background]="data.categoryColor" class="card-title-text">{{ data.category }}</div></div>
+        <div class="card-title">{{data.title}}</div>
         <div class="card-description">{{ data.description }}</div>
         <div class="card-date">
-          <span>Due Date:</span><div>{{ formatDateService.formatTimestampToDMY(data.date) }}</div>
+          <span class="other-color-box">Due Date:</span><div>{{ formatDateService.formatTimestampToDMY(data.date) }}</div>
         </div>
-        <div class="card-priority">
-          <div>
+        <div class="card-priority-container">
+          <span class="other-color-box">Priority:</span>
+        
+          <div class="priority-box">
+            <span>{{capitalizeFirstLetter(data.prio)}}</span>
             <img src="/assets/img/{{data.prio}}.svg">
           </div>
-          <div>
-            {{capitalizeFirstLetter(data.prio)}}
-          </div>
+          
+           
+          
          </div>
          <div class="assigned-container">
-              <div class="card-initials-container">
-                  @for (initials of data.initials; let i = $index; track initials) {
-                    <div class="card-initials" [style.background]="data.initialColors[i]">{{initials}}</div>
-                  }
-              </div>
-              <div class="card-assigned" [innerHTML]="processAssignedString(data.assigned)"></div>
-         </div>
+          <span class="other-color-box">Assigned To:</span>
+          <div class="card-initials-container">
+              @for (initials of data.initials; let i = $index; track initials) {
+                  <div class="card-assigned-initials-box">
+                      <div class="card-initials" [style.background]="data.initialColors[i]">{{data.initials[i]}}</div>
+                      <div class="card-assigned">{{data.assigned[i]}}</div>
+                  </div>
+              }
+          </div>
+          </div>
    
         <div>{{ data.subtasks}}</div>
       </div>
