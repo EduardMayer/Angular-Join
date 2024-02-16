@@ -12,6 +12,15 @@
     font-size: 20px;
     font-weight: 400;
 }
+.card-category{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    svg{
+        cursor: pointer;
+    }
+}
 
 
 .card-title{
@@ -105,5 +114,18 @@
         
     }
 
+  
 
 }
+
+.subtask-container{
+    display: flex;
+    flex-direction: column;
+
+
+    .subtask-box{
+        display: flex;
+        flex-direction: column;
+    }
+}
+

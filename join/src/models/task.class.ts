@@ -10,7 +10,7 @@ export class Task {
     date: string;
     prio: string;
     category: string;
-    subtasks: string[];
+    subtasks: { title: string, completed: boolean }[];
 
     constructor(obj?: any) {
         this.id = obj && obj.id || "";
@@ -24,7 +24,11 @@ export class Task {
         this.date = obj && obj.date || "";
         this.prio = obj && obj.prio || "";
         this.category = obj && obj.category || "";
-        this.subtasks = obj && obj.subtasks || [];
+    
+        //console.log("obj.subtasks:", obj && obj.subtasks); 
+    
+        this.subtasks = obj && obj.subtasks ? obj.subtasks.map((subtask: string) => ({ title: this.title, completed: false })) : [];
+
     }
 
     toJSON() {

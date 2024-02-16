@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { doc, getDoc, addDoc, DocumentData, collection, query, getDocs, deleteDoc, updateDoc } from "firebase/firestore";
 import { Task } from '../models/task.class';
+import { title } from 'node:process';
 
 @Injectable({
   providedIn: 'root'
@@ -97,4 +98,16 @@ export class TaskFirebaseService {
       }
     }
   }
+
+  async updateSubtasks(taskId: string, subtasks: { title: string; completed: boolean; }[]) {
+    try {
+        const docRef = doc(this.firestore, "tasks", taskId);
+        // Erstellen eines Objekts, das das gesamte Subtasks-Array enthält
+        const updateData = { subtasks: subtasks };
+        // Aktualisieren des Dokuments mit dem neuen Datenobjekt
+        await updateDoc(docRef, updateData);
+    } catch (error) {
+        console.error('Error updating subtasks:', error);
+    }
+}
 }

@@ -130,6 +130,7 @@ export class AddTaskComponent implements OnInit {
     this.showCheckIcon = false;
     this.showCloseIcon = false;
   }
+  
   addSubtasks() {
     if (this.inputValue.trim() !== '') {
       this.subtasks.push(this.inputValue.trim());
