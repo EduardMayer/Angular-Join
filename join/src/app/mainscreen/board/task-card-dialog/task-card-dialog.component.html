@@ -37,9 +37,14 @@
    
         <div class="subtask-container">
           <span class="other-color-box">Subtasks</span>
-          <span class="subtask-box">@for (tasks of data.subtasks; let i = $index; track tasks) {
-            <mat-checkbox class="subtask" [checked]="tasks.completed" (change)="updateSubtask(i, $event.checked)">{{tasks.title}}</mat-checkbox>
-        }</span>
+          <span class="subtask-box">
+            <div *ngFor="let task of data.subtasks; let i = index">
+              <mat-checkbox class="subtask" [(ngModel)]="task.completed" (change)="updateSubtask(i, $event.checked)" [checked]="task.completed">
+                {{ task.title }}
+              </mat-checkbox>
+            </div>
+            
+        </span>
         </div>
       </div>
     </mat-card-content>

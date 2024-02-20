@@ -10,22 +10,20 @@ import { FormatService } from '../../../../services/format-date.service';
 import { DatePipe } from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {ThemePalette} from '@angular/material/core';
+import { CommonModule } from '@angular/common';
+
 
 
 
 @Component({
   selector: 'app-task-card-dialog',
   standalone: true,
-  imports: [MatCardModule, DatePipe, MatCheckboxModule, FormsModule],
+  imports: [MatCardModule, DatePipe, MatCheckboxModule, FormsModule, CommonModule],
   templateUrl: './task-card-dialog.component.html',
   styleUrl: './task-card-dialog.component.scss'
 })
 export class TaskCardDialogComponent {
 
-
-  subtasks!: Task[];
-  selectedSubtasks: boolean[] = [];
 
     constructor(
       public userService: UserFirebaseService,
@@ -37,15 +35,9 @@ export class TaskCardDialogComponent {
       
     ) {}
 
-
-
-
     ngOnInit(): void {
       this.userService.load();
-      this.taskService.load();
-  
-    console.log(this.data.subtasks);
-  
+      this.taskService.load(); 
     }
 
     capitalizeFirstLetter(word: string): string {
@@ -73,17 +65,28 @@ export class TaskCardDialogComponent {
 
 
   
-  async updateSubtask(index: number, checked: boolean) {
+  async updateSubtask(i: number, checked: boolean) {
     try {
-        const taskId = this.taskService.tasks[0].id; 
-        const task = await this.taskService.getTaskByID(taskId);
-        if (task.subtasks[index]) {
-            task.subtasks[index].completed = checked;
-            await this.taskService.updateSubtasks(taskId, task.subtasks);
+      const taskId = this.taskService.tasks[i].id; 
+      const task = await this.taskService.getTaskByID(taskId);
+      
+      if (task.subtasks[i]) {
+        if (checked) {
+          task.subtasks[i].completed = true;
+        } else {
+          task.subtasks[i].completed = false;
         }
+        
+        await this.taskService.updateSubtasks(taskId, task.subtasks);
+
+        console.log()
+      }
     } catch (error) {
-        console.error('Error updating subtask:', error);
+      console.error('Error updating subtask:', error);
     }
-}
+  }
+
+
+
 
 }
